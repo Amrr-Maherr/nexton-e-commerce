@@ -1,4 +1,5 @@
 import { Truck, Undo2, Globe, RotateCcw } from "lucide-react";
+import BrandInfoCard from "./Elements/BrandInfoCard";
 
 export default function BrandInfo() {
   const Data = [
@@ -28,18 +29,7 @@ export default function BrandInfo() {
     <section className="flex items-center justify-center">
       <div className="px-6 md:px-[120px] py-8 md:py-[52px] grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full max-w-[1280px]">
         {Data?.map((item, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center text-center gap-2 p-3 md:p-4 border rounded-2xl shadow-sm"
-          >
-            {item.icon}
-            <h3 className="text-base md:text-lg font-semibold text-[#111827]">
-              {item.title}
-            </h3>
-            <p className="text-xs md:text-sm text-[#4B5563]">
-              {item.Description}
-            </p>
-          </div>
+          <BrandInfoCard item={item} key={index} index={index}/>
         ))}
       </div>
     </section>
