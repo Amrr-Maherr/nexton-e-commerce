@@ -1,6 +1,7 @@
 import { User } from "lucide-react";
 import { ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import MiniCart from "./MiniCart";
 
 export default function UserActions() {
   return (
@@ -9,7 +10,7 @@ export default function UserActions() {
         <Link href="/Login">
           <User className="cursor-pointer" />
         </Link>
-        <ShoppingCart className="cursor-pointer" />
+        <MiniCart/>
       </div>
     </>
   );
