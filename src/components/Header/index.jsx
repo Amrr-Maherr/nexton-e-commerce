@@ -1,6 +1,6 @@
 import SearchInput from "@/ui/SearchInput";
-import Logo from "./Eelements/Logo";
-import UserActions from "./Eelements/UserActions";
+import Logo from "./Elements/Logo";
+import UserActions from "./Elements/UserActions";
 
 export default function Index() {
     return (
