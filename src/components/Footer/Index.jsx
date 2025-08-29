@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "motion/react";
 import BottomFooter from "../Footer/Elements/BottomFooter";
 import Logo from "../Header/Elements/Logo";
 import FooterLink from "./Elements/FooterLink";
@@ -6,11 +8,32 @@ import SocialMediaIcons from "./Elements/SocialMediaIcons";
 import { Facebook, Youtube, Send, Twitter } from "lucide-react";
 
 export default function Index() {
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        delay: i * 0.2, // كل عمود يتأخر شوية عن اللي قبله
+        ease: "easeOut",
+      },
+    }),
+  };
+
   return (
     <>
       <footer className="px-6 md:px-12 lg:px-[120px] flex items-center justify-center flex-col border-t border-solid border-[#E7E7E7]">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-[60px] gap-10 w-full">
-          <div className="flex flex-col items-start">
+          {/** العمود الأول */}
+          <motion.div
+            custom={0}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-col items-start"
+          >
             <Logo />
             <div className="flex flex-col gap-2 mt-4">
               <SocialMediaIcons
@@ -30,31 +53,55 @@ export default function Index() {
                 SocialIcon={<Twitter className="text-[#1DA1F2]" />}
               />
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col">
+          {/** العمود الثاني */}
+          <motion.div
+            custom={1}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-col"
+          >
             <FooterLinkTitle LinkTitle="Getting started" />
             <FooterLink LinkText="Release Notes" />
             <FooterLink LinkText="Upgrade Guide" />
             <FooterLink LinkText="Browser Support" />
             <FooterLink LinkText="Dark Mode" />
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col">
+          {/** العمود الثالث */}
+          <motion.div
+            custom={2}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-col"
+          >
             <FooterLinkTitle LinkTitle="Explore" />
             <FooterLink LinkText="Prototyping" />
             <FooterLink LinkText="Design systems" />
             <FooterLink LinkText="Pricing" />
             <FooterLink LinkText="Security" />
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col">
+          {/** العمود الرابع */}
+          <motion.div
+            custom={3}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-col"
+          >
             <FooterLinkTitle LinkTitle="Community" />
             <FooterLink LinkText="Discussion Forums" />
             <FooterLink LinkText="Code of Conduct" />
             <FooterLink LinkText="Contributing" />
             <FooterLink LinkText="API Reference" />
-          </div>
+          </motion.div>
         </div>
       </footer>
       <BottomFooter />

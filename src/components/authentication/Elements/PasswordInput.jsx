@@ -1,4 +1,4 @@
-export default function PasswordInput() {
+export default function PasswordInput({lableText}) {
     return (
       <>
         <div className="flex items-start justify-center gap-[8px] flex-col w-full">
@@ -6,7 +6,7 @@ export default function PasswordInput() {
             htmlFor=""
             className="text-[14px] font-semibold text-[#111827]"
           >
-            Password
+            Password {lableText}
           </label>
           <input
             type="email"
