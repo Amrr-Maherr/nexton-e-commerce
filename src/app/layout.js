@@ -1,5 +1,6 @@
 import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
+import Index from "@/components/Header";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -25,6 +26,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${roboto.variable} ${robotoMono.variable} antialiased`}>
+        <Index />
         {children}
       </body>
     </html>
