@@ -7,6 +7,7 @@ import SectionTitle from "@/components/SectionTitle/SectionTitle";
 import AddToCart from "../ProductActions/AddToCart";
 import ProductQuantity from "../ProductActions/ProductQuantity";
 import BrandsSection from "@/app/Home/Elements/BrandsSection/BrandsSection";
+import FrequentlyAskedQuestions from "@/components/FrequentlyQskedQuestions/FrequentlyQskedQuestions";
 
 export default function ProductDetails({ params }) {
   const unwrappedParams = React.use(params);
@@ -107,6 +108,7 @@ export default function ProductDetails({ params }) {
       </div>
       <BrandsSection/>
       <ProductsSection />
+      <FrequentlyAskedQuestions/>
     </>
   );
 }
