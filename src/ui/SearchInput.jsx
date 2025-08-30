@@ -16,124 +16,82 @@ export default function SearchInput() {
         {/* 🛒 Electronics */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>Electronics</NavigationMenuTrigger>
-          <NavigationMenuContent className="grid gap-3 p-4 md:w-[600px] lg:w-[700px] grid-cols-3">
-            <div>
-              <h4 className="font-semibold mb-2">Mobiles</h4>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Smartphones
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Feature Phones
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Accessories
-              </NavigationMenuLink>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Computers</h4>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Laptops
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Tablets
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                PC Components
-              </NavigationMenuLink>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Other Electronics</h4>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Headphones
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Cameras
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Gaming Consoles
-              </NavigationMenuLink>
-            </div>
+          <NavigationMenuContent className="grid gap-3 p-4 md:w-[500px] lg:w-[600px] grid-cols-2">
+            <NavigationMenuLink className="p-2 hover:underline">
+              Smartphones
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Laptops
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Tablets
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Headphones
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Gaming Consoles
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Cameras
+            </NavigationMenuLink>
           </NavigationMenuContent>
         </NavigationMenuItem>
 
         {/* 👗 Fashion */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>Fashion</NavigationMenuTrigger>
-          <NavigationMenuContent className="grid gap-3 p-4 md:w-[600px] lg:w-[700px] grid-cols-3">
-            <div>
-              <h4 className="font-semibold mb-2">Men</h4>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Clothing
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Shoes
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Accessories
-              </NavigationMenuLink>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Women</h4>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Clothing
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Bags
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Jewelry
-              </NavigationMenuLink>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Kids</h4>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Clothing
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Shoes
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                School Supplies
-              </NavigationMenuLink>
-            </div>
+          <NavigationMenuContent className="grid gap-3 p-4 md:w-[500px] lg:w-[600px] grid-cols-2">
+            <NavigationMenuLink className="p-2 hover:underline">
+              Men’s Clothing
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Women’s Clothing
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Kids’ Clothing
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Shoes
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Bags
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Accessories
+            </NavigationMenuLink>
           </NavigationMenuContent>
         </NavigationMenuItem>
 
         {/* 🏠 Home & Living */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>Home & Living</NavigationMenuTrigger>
-          <NavigationMenuContent className="grid gap-3 p-4 md:w-[600px] lg:w-[700px] grid-cols-2">
-            <div>
-              <h4 className="font-semibold mb-2">Furniture</h4>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Sofas
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Beds
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Tables
-              </NavigationMenuLink>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2">Decor & More</h4>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Lighting
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Rugs
-              </NavigationMenuLink>
-              <NavigationMenuLink className="block p-1 hover:underline">
-                Kitchenware
-              </NavigationMenuLink>
-            </div>
+          <NavigationMenuContent className="grid gap-3 p-4  md:w-[500px] lg:w-[600px] grid-cols-2">
+            <NavigationMenuLink className="p-2 hover:underline">
+              Furniture
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Kitchen Appliances
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Home Decor
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Lighting
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Storage
+            </NavigationMenuLink>
+            <NavigationMenuLink className="p-2 hover:underline">
+              Bedding
+            </NavigationMenuLink>
           </NavigationMenuContent>
         </NavigationMenuItem>
 
         {/* 💄 Beauty */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>Beauty</NavigationMenuTrigger>
-          <NavigationMenuContent className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] grid-cols-2">
+          <NavigationMenuContent className="grid gap-3 p-4  md:w-[500px] lg:w-[600px]">
             <NavigationMenuLink className="p-2 hover:underline">
               Makeup
             </NavigationMenuLink>
@@ -152,7 +110,7 @@ export default function SearchInput() {
         {/* ⚽ Sports */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>Sports</NavigationMenuTrigger>
-          <NavigationMenuContent className="grid gap-3 p-4 md:w-[400px] lg:w-[500px] grid-cols-2">
+          <NavigationMenuContent className="grid gap-3 p-4   md:w-[500px] lg:w-[600px]">
             <NavigationMenuLink className="p-2 hover:underline">
               Fitness Equipment
             </NavigationMenuLink>
@@ -160,10 +118,10 @@ export default function SearchInput() {
               Sportswear
             </NavigationMenuLink>
             <NavigationMenuLink className="p-2 hover:underline">
-              Outdoor Gear
+              Shoes
             </NavigationMenuLink>
             <NavigationMenuLink className="p-2 hover:underline">
-              Shoes
+              Outdoor Gear
             </NavigationMenuLink>
           </NavigationMenuContent>
         </NavigationMenuItem>
@@ -171,7 +129,7 @@ export default function SearchInput() {
         {/* 🎁 Offers */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>Offers</NavigationMenuTrigger>
-          <NavigationMenuContent className="grid gap-3 p-4 md:w-[400px] lg:w-[500px]">
+          <NavigationMenuContent className="grid gap-3 p-4  md:w-[500px] lg:w-[600px]">
             <NavigationMenuLink className="p-2 font-semibold text-red-500">
               Today’s Deals
             </NavigationMenuLink>

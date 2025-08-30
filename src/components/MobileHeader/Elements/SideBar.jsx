@@ -27,7 +27,7 @@ export default function SideBar() {
           <Button
             variant="outline"
             size="icon"
-            className="rounded-xl shadow-md"
+            className="rounded-xl"
           >
             <Menu className="h-6 w-6" />
           </Button>
