@@ -21,7 +21,7 @@ export default function ProductDetails({ params }) {
                 key={index}
                 src={img}
                 alt={`${product.title} ${index + 1}`}
-                className="w-[140px] h-[157.5px] object-cover rounded-lg flex-shrink-0"
+                className="w-[70px] md:w-[140px] h-[157.5px] object-cover rounded-lg flex-shrink-0"
               />
             ))}
           </div>
