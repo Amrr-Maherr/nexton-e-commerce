@@ -14,7 +14,7 @@ const useFetchProducts = () => {
           "https://ecommerce.routemisr.com/api/v1/products"
         );
         const result = await res.json();
-        setData(result);
+        setData(result.data);
       } catch (err) {
         setError(err.message);
       } finally {
