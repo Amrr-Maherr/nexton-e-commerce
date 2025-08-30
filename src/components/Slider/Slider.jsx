@@ -8,8 +8,8 @@ import { Pagination, Autoplay, Navigation } from "swiper/modules";
 
 export default function Slider({
   children,
-  slidesPerView = 1,
-  spaceBetween = 0,
+  slidesPerView = 4,
+  spaceBetween = 20,
   slidesPerViewMobile = 1,
   className,
   swiperOptions = {},
@@ -17,7 +17,7 @@ export default function Slider({
 }) {
   return (
     <Swiper
-      slidesPerView={slidesPerView}
+      slidesPerView={slidesPerViewMobile} // default for mobile
       spaceBetween={spaceBetween}
       autoplay={{
         delay: 3000,
@@ -30,10 +30,15 @@ export default function Slider({
         ...swiperOptions.pagination,
       }}
       breakpoints={{
-        440: {
-          slidesPerView: slidesPerViewMobile,
+        640: {
+          slidesPerView: Math.min(slidesPerView, 2),
           spaceBetween: spaceBetween,
-          ...swiperOptions.breakpoints?.[440],
+          ...swiperOptions.breakpoints?.[640],
+        },
+        768: {
+          slidesPerView: Math.min(slidesPerView, 3),
+          spaceBetween: spaceBetween,
+          ...swiperOptions.breakpoints?.[768],
         },
         1024: {
           slidesPerView: slidesPerView,
