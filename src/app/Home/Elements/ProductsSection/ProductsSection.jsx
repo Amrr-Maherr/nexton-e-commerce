@@ -12,7 +12,7 @@ export default function ProductsSection({ title, spanTitle }) {
   }
   return (
     <>
-      <section className="py-20 px-[20px] md:px-[120px]">
+      <section className="py-10 md:py-20 px-[20px] md:px-[120px]">
         <SectionTitle title={title} spanTitle={spanTitle} />
         <div className="flex items-center justify-center ">
           <Slider slidesPerView={4} spaceBetween={20} slidesPerViewMobile={2}>

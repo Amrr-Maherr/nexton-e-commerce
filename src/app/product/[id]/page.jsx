@@ -4,6 +4,8 @@ import useFetchProductDetails from "@/Hooks/useFetchProductDetails";
 import Loader from "@/components/Loader/Loader";
 import ProductsSection from "@/app/Home/Elements/ProductsSection/ProductsSection";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
+import AddToCart from "../ProductActions/AddToCart";
+import ProductQuantity from "../ProductActions/ProductQuantity";
 
 export default function ProductDetails({ params }) {
   const unwrappedParams = React.use(params);
@@ -84,6 +86,22 @@ export default function ProductDetails({ params }) {
               </ul>
             </div>
           )}
+          <div className="flex items-center justify-between flex-row-reverse">
+            <AddToCart />
+            <ProductQuantity />
+          </div>
+          <div className="flex items-center justify-between">
+            <p className="text-[16px] font-normal text-[#4B5563]">
+              Tax estimate
+            </p>
+            <p className="text-[16px] font-normal text-[#4B5563]">$0</p>
+          </div>
+          <div className="flex py-4 items-center justify-between border-solid border-t border-[#E5E7EB]">
+            <p className="text-[16px] font-semibold text-[#111827]">Total</p>
+            <p className="text-[16px] font-semibold text-[#111827]">
+              ${product.price}
+            </p>
+          </div>
         </div>
       </div>
       <ProductsSection />
