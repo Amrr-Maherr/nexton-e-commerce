@@ -3,10 +3,12 @@ import HeroSection from "./Elements/HeroSection";
 import Category from "./Elements/Category/CategorySection";
 import ProductsSection from "./Elements/ProductsSection/ProductsSection";
 import Ads from "./Elements/Ads/Ads";
+import BrandsSection from "./Elements/BrandsSection/BrandsSection";
 export default function page() {
   return (
     <>
       <HeroSection />
+      <BrandsSection/>
       <BrandInfo />
       <Category />
       <ProductsSection
