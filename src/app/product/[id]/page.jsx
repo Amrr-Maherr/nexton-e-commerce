@@ -29,7 +29,7 @@ export default function ProductDetails({ params }) {
             <img
               src={product.imageCover}
               alt={`${product.title} cover`}
-              className="w-[640px] h-[678px] object-cover rounded-lg"
+              className="w-[640px] h-[300px] md:h-[678px] object-cover rounded-lg"
             />
           )}
         </div>
