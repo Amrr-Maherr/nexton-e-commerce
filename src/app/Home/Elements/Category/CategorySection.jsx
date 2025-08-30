@@ -19,7 +19,7 @@ export default function Category() {
             spanTitle="Good things are waiting for you"
           />
           <div className="flex items-center justify-center ">
-            <Slider slidesPerView={4} spaceBetween={20} slidesPerViewMobile={1}>
+            <Slider slidesPerView={6} spaceBetween={20} slidesPerViewMobile={1}>
               {categories?.map((category) => (
                 <CategoryCard category={category} key={category.id} />
               ))}
