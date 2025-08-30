@@ -15,7 +15,7 @@ export default function ProductDetails({ params }) {
     <>
       <div className="py-[40px] px-[40px] md:px-[120px] grid grid-cols-1 md:grid-cols-7 mx-auto">
         <div className="flex items-start justify-evenly flex-wrap-reverse md:flex-nowrap col-span-7 md:col-span-4 mb-4">
-          <div className="flex items-center mt-[20px] md:mt-0 flex-row justify-center md:flex-col gap-[16px]">
+          <div className="flex items-center mt-[20px] md:mt-0 flex-row flex-wrap justify-center md:flex-col gap-[16px]">
             {product.images?.map((img, index) => (
               <img
                 key={index}
