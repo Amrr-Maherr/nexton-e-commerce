@@ -2,6 +2,8 @@
 import React from "react";
 import useFetchProductDetails from "@/Hooks/useFetchProductDetails";
 import Loader from "@/components/Loader/Loader";
+import ProductsSection from "@/app/Home/Elements/ProductsSection/ProductsSection";
+import SectionTitle from "@/components/SectionTitle/SectionTitle";
 
 export default function ProductDetails({ params }) {
   const unwrappedParams = React.use(params);
@@ -84,6 +86,7 @@ export default function ProductDetails({ params }) {
           )}
         </div>
       </div>
+      <ProductsSection />
     </>
   );
 }
