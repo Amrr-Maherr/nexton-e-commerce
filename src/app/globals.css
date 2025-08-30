@@ -44,6 +44,8 @@
 }
 
 :root {
+  --font-roboto: 'Roboto', sans-serif;
+    --font-roboto-mono: 'Roboto Mono', monospace;
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -77,7 +79,9 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
 }
-
+ body {
+   font-family: var(--font-roboto);
+ }
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
