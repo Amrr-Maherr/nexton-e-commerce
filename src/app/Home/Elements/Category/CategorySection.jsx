@@ -13,13 +13,13 @@ export default function Category() {
     }
     return (
       <>
-        <section className="py-20 px-[80px] md:px-[120px]">
+        <section className="py-20 px-[20px] md:px-[120px]">
           <SectionTitle
             title="Start exploring."
             spanTitle="Good things are waiting for you"
           />
           <div className="flex items-center justify-center ">
-            <Slider slidesPerView={6} spaceBetween={20} slidesPerViewMobile={1}>
+            <Slider slidesPerView={6} spaceBetween={20} slidesPerViewMobile={2}>
               {categories?.map((category) => (
                 <CategoryCard category={category} key={category.id} />
               ))}

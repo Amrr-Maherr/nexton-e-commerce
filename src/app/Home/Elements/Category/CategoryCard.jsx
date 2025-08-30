@@ -6,7 +6,7 @@ export default function CategoryCard({ category }) {
   return (
     <Link href="/">
       <div className="border rounded-lg overflow-hidden shadow-lg hover:shadow-xl mx-auto bg-white">
-        <div className="relative w-full h-80">
+        <div className="relative w-full h-[200px] md:h-[409px]">
           <Image
             src={category.image}
             alt={category.name}
