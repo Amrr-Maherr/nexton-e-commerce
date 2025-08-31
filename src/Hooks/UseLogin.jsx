@@ -1,26 +1,28 @@
 import axios from "axios";
 import { useState } from "react";
 
-export default function HandleLogin() {
-  const [SuccessMessage, setSuccessMessage] = useState(null);
-  const [ErrorMessage, setErrorMessage] = useState(null);
-  const [Loading, setLoading] = useState(false);
+export default function useLogin() {
+  const [successMessage, setSuccessMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const UseLogin = async (LoginInfo) => {
+  const login = async (loginInfo) => {
     try {
       setLoading(true);
-      const Response = await axios.post(
+      const response = await axios.post(
         `https://ecommerce.routemisr.com/api/v1/auth/signin`,
-        LoginInfo
+        loginInfo
       );
-      setSuccessMessage(Response);
+
+      setSuccessMessage(response.data);
+      localStorage.setItem("userToken", response.data.token);
     } catch (error) {
-      console.log(error);
-      setErrorMessage(error);
+      console.error(error);
+      setErrorMessage(error.response?.data?.message || "Login failed");
     } finally {
       setLoading(false);
     }
   };
 
-  return { SuccessMessage, ErrorMessage, Loading, UseLogin };
+  return { successMessage, errorMessage, loading, login };
 }
