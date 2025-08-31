@@ -7,7 +7,7 @@ export default function ProductCard({ product }) {
     console.log(product,"product");
     
   return (
-    <div className="rounded-lg overflow-hidden w-auto mx-auto bg-white">
+    <div className="rounded-lg overflow-hidden w-full mx-auto bg-white">
       <div className="relative w-full h-[200px] md:h-[409px]">
         <Link href={`/product/${product.id}`}>
           <Image
