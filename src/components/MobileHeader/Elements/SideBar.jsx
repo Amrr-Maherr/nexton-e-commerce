@@ -18,6 +18,7 @@ import {
   Phone,
 } from "lucide-react";
 import Logo from "@/components/Header/Elements/Logo";
+import Link from "next/link";
 
 export default function SideBar() {
   return (
@@ -44,42 +45,42 @@ export default function SideBar() {
           </SheetHeader>
 
           <nav className="flex flex-col mt-4">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
               <Home className="h-5 w-5" /> Home
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/AllProducts"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
               <ShoppingBag className="h-5 w-5" /> Shop
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
               <Package className="h-5 w-5" /> Orders
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
               <Heart className="h-5 w-5" /> Wishlist
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              href="/fgfgfg"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
               <User className="h-5 w-5" /> Account
-            </a>
-            <a
+            </Link>
+            <Link
               href="#"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
               <Phone className="h-5 w-5" /> Contact
-            </a>
+            </Link>
           </nav>
         </SheetContent>
       </Sheet>
