@@ -157,3 +157,7 @@
 .swiper-pagination-bullet-active:hover {
   transform: scale(1.05);
 }
+
+.container {
+  @apply px-4 sm:px-8 md:px-16 lg:px-24 xl:px-[120px];
+}
