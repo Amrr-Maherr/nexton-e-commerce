@@ -51,7 +51,7 @@ export default function FiltersUI() {
 
   return (
     <>
-      <div className="p-6 hidden md:block bg-white rounded-2xl w-full max-w-lg mx-auto">
+      <div className="p-6 hidden md:block bg-white rounded-2xl w-full mx-auto">
         <form className="grid gap-4" onSubmit={handleSubmit}>
           {/* Category */}
           <div>
@@ -161,7 +161,7 @@ export default function FiltersUI() {
       <div className="p-4 block md:hidden bg-white rounded-2xl w-full mx-auto">
         <form className="grid gap-4" onSubmit={handleSubmit}>
           {/* Category */}
-          <div>
+          <div className="w-full">
             <Select
               value={filters.category}
               onValueChange={(val) => handleChange("category", val)}
@@ -183,7 +183,7 @@ export default function FiltersUI() {
           </div>
 
           {/* Keyword */}
-          <div className="grid w-full gap-2">
+          <div className="w-full">
             <Input
               type="text"
               id="key"
@@ -194,7 +194,7 @@ export default function FiltersUI() {
           </div>
 
           {/* Brand */}
-          <div>
+          <div className="w-full">
             <Select
               value={filters.brand}
               onValueChange={(val) => handleChange("brand", val)}
@@ -216,8 +216,8 @@ export default function FiltersUI() {
           </div>
 
           {/* Price Range */}
-          <div className="grid grid-cols-2 gap-3">
-            <div>
+          <div className="flex flex-col sm:flex-row gap-3 w-full">
+            <div className="flex-1">
               <label className="block text-sm font-medium mb-1">
                 Price (Min)
               </label>
@@ -228,7 +228,7 @@ export default function FiltersUI() {
                 onChange={(e) => handleChange("priceGte", e.target.value)}
               />
             </div>
-            <div>
+            <div className="flex-1">
               <label className="block text-sm font-medium mb-1">
                 Price (Max)
               </label>
@@ -242,7 +242,7 @@ export default function FiltersUI() {
           </div>
 
           {/* Buttons */}
-          <div className="flex justify-between gap-3 mt-2">
+          <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
             <Button
               variant="outline"
               type="button"
