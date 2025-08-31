@@ -14,7 +14,11 @@ export default function MiniCart() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button variant="outline shadow-none" size="icon" className="shadow-none">
+        <Button
+          variant="outline shadow-none"
+          size="icon"
+          className="shadow-none cursor-pointer"
+        >
           <ShoppingCart className="h-6 w-6" />
         </Button>
       </SheetTrigger>
