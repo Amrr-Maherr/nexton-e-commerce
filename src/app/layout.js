@@ -2,6 +2,8 @@ import { Roboto, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import Index from "@/components/Header";
 import Footer from "@/components/Footer/Index";
+import WhatsappButton from "@/components/WhatsappButton/WhatsappButton";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -29,6 +31,8 @@ export default function RootLayout({ children }) {
       <body className={`${roboto.variable} ${robotoMono.variable} antialiased`}>
         <Index />
         {children}
+        <WhatsappButton/>
+        <ScrollToTop/>
         <Footer />
       </body>
     </html>
