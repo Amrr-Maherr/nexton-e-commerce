@@ -7,9 +7,9 @@ import Link from "next/link";
 import { Input } from "@/components/ui/input";
 
 export default function SearchInput() {
-  const [query, setQuery] = useState("");
-  const { searchResponse, loading } = useSearch(query);
-console.log(searchResponse,"es");
+  // const [query, setQuery] = useState("");
+  // const { searchResponse, loading } = useSearch(query);
+// console.log(searchResponse,"es");
 
   return (
     <div className="w-full max-w-[600px] relative">
@@ -20,13 +20,13 @@ console.log(searchResponse,"es");
         />
         <Input
           placeholder="Search in products..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          // value={query}
+          // onChange={(e) => setQuery(e.target.value)}
           className="pl-10"
         />
       </div>
 
-      {query && (
+      {/* {query && (
         <div className="absolute top-full left-0 w-full bg-white border border-gray-200 rounded-lg mt-1 max-h-60 overflow-auto shadow-lg z-50">
           {loading && <p className="px-4 py-2 text-gray-500">Loading...</p>}
           {!loading && searchResponse?.length === 0 && (
@@ -49,7 +49,7 @@ console.log(searchResponse,"es");
               </Link>
             ))}
         </div>
-      )}
+      )} */}
     </div>
   );
 }
