@@ -1,7 +1,8 @@
 "use client";
+import { useState, useEffect } from "react";
 import useFetchBrands from "@/Hooks/useFetchBrands";
 import useFetchCategories from "@/Hooks/useFetchCategories";
-import { useState } from "react";
+import useFilteredProducts from "@/Hooks/useFilteredProducts";
 import {
   Select,
   SelectContent,
@@ -13,13 +14,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
-export default function FiltersUI() {
-  const { categories = [], loading, error } = useFetchCategories();
-  const {
-    brands = [],
-    loading: brandsLoading,
-    error: brandsError,
-  } = useFetchBrands();
+export default function FiltersUI({ setFilteredProducts, setLoading }) {
+  const { categories = [] } = useFetchCategories();
+  const { brands = [] } = useFetchBrands();
 
   const [filters, setFilters] = useState({
     keyword: "",
@@ -29,14 +26,15 @@ export default function FiltersUI() {
     priceLte: "",
   });
 
+  const [appliedFilters, setAppliedFilters] = useState({});
+  const { products, loading, error } = useFilteredProducts(appliedFilters);
+  useEffect(() => {
+    if (setFilteredProducts) setFilteredProducts(products);
+    if (setLoading) setLoading(loading);
+  }, [products, loading, setFilteredProducts, setLoading]);
+
   const handleChange = (field, value) => {
     setFilters((prev) => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Filters applied:", filters);
-    // هنا تبعت الفلاتر للهوك أو API
   };
 
   const handleReset = () => {
@@ -47,219 +45,93 @@ export default function FiltersUI() {
       priceGte: "",
       priceLte: "",
     });
+    setAppliedFilters({});
+  };
+
+  const handleApply = (e) => {
+    e.preventDefault();
+    setAppliedFilters({ ...filters });
   };
 
   return (
-    <>
-      <div className="p-6 hidden md:block bg-white rounded-2xl w-full mx-auto">
-        <form className="grid gap-4" onSubmit={handleSubmit}>
-          {/* Category */}
-          <div>
-            <Select
-              value={filters.category}
-              onValueChange={(val) => handleChange("category", val)}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Categories" />
-              </SelectTrigger>
-              <SelectContent>
-                {categories.map((category) => (
-                  <SelectItem
-                    value={category.name}
-                    key={category._id || category.id || category.name}
-                  >
-                    {category.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <hr className="w-full bg-gray-400 my-[22px]" />
+    <form className="grid gap-4" onSubmit={handleApply}>
+      {/* Categories */}
+      <Select
+        value={filters.category}
+        onValueChange={(val) => handleChange("category", val)}
+      >
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Categories" />
+        </SelectTrigger>
+        <SelectContent>
+          {categories.map((cat) => (
+            <SelectItem value={cat._id} key={cat._id}>
+              {cat.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
 
-          {/* Keyword */}
-          <div className="grid w-full items-center gap-3">
-            <Label htmlFor="key">Key words</Label>
-            <Input
-              type="text"
-              id="key"
-              placeholder="key word"
-              value={filters.keyword}
-              onChange={(e) => handleChange("keyword", e.target.value)}
-            />
-          </div>
-          <hr className="w-full bg-gray-400 my-[22px]" />
-
-          {/* Brand */}
-          <div>
-            <Select
-              value={filters.brand}
-              onValueChange={(val) => handleChange("brand", val)}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Brands" />
-              </SelectTrigger>
-              <SelectContent>
-                {brands.map((brand) => (
-                  <SelectItem
-                    value={brand.name}
-                    key={brand._id || brand.id || brand.name}
-                  >
-                    {brand.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-          <hr className="w-full bg-gray-400 my-[22px]" />
-
-          {/* Price Range */}
-          <div className="grid grid-cols-2 gap-3">
-            <div>
-              <label className="block text-[18px] font-semibold mb-[8px]">
-                Price (Min)
-              </label>
-              <Input
-                type="number"
-                placeholder="1"
-                value={filters.priceGte}
-                onChange={(e) => handleChange("priceGte", e.target.value)}
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Price (Max)
-              </label>
-              <Input
-                type="number"
-                placeholder="1000"
-                value={filters.priceLte}
-                onChange={(e) => handleChange("priceLte", e.target.value)}
-              />
-            </div>
-          </div>
-          <hr className="w-full bg-gray-400 my-[22px]" />
-
-          {/* Buttons */}
-          <div className="flex justify-between gap-5 mt-4">
-            <Button
-              variant="outline"
-              type="button"
-              onClick={handleReset}
-              className="px-10 py-2 bg-white rounded-full w-auto text-gray-700"
-            >
-              Reset
-            </Button>
-            <Button
-              type="submit"
-              className="px-10 py-2 bg-[#111827] rounded-full w-auto text-white"
-            >
-              Apply
-            </Button>
-          </div>
-        </form>
+      {/* Keyword */}
+      <div className="grid w-full items-center gap-3">
+        <Label htmlFor="key">Key words</Label>
+        <Input
+          type="text"
+          id="key"
+          placeholder="Key word"
+          value={filters.keyword}
+          onChange={(e) => handleChange("keyword", e.target.value)}
+        />
       </div>
-      <div className="p-4 block md:hidden bg-white rounded-2xl w-full mx-auto">
-        <form className="grid gap-4" onSubmit={handleSubmit}>
-          {/* Category */}
-          <div className="w-full">
-            <Select
-              value={filters.category}
-              onValueChange={(val) => handleChange("category", val)}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Categories" />
-              </SelectTrigger>
-              <SelectContent>
-                {categories.map((category) => (
-                  <SelectItem
-                    value={category.name}
-                    key={category._id || category.id || category.name}
-                  >
-                    {category.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
 
-          {/* Keyword */}
-          <div className="w-full">
-            <Input
-              type="text"
-              id="key"
-              placeholder="Keyword"
-              value={filters.keyword}
-              onChange={(e) => handleChange("keyword", e.target.value)}
-            />
-          </div>
+      {/* Brands */}
+      <Select
+        value={filters.brand}
+        onValueChange={(val) => handleChange("brand", val)}
+      >
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Brands" />
+        </SelectTrigger>
+        <SelectContent>
+          {brands.map((b) => (
+            <SelectItem value={b._id} key={b._id}>
+              {b.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
 
-          {/* Brand */}
-          <div className="w-full">
-            <Select
-              value={filters.brand}
-              onValueChange={(val) => handleChange("brand", val)}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Brands" />
-              </SelectTrigger>
-              <SelectContent>
-                {brands.map((brand) => (
-                  <SelectItem
-                    value={brand.name}
-                    key={brand._id || brand.id || brand.name}
-                  >
-                    {brand.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {/* Price Range */}
-          <div className="flex flex-col sm:flex-row gap-3 w-full">
-            <div className="flex-1">
-              <label className="block text-sm font-medium mb-1">
-                Price (Min)
-              </label>
-              <Input
-                type="number"
-                placeholder="1"
-                value={filters.priceGte}
-                onChange={(e) => handleChange("priceGte", e.target.value)}
-              />
-            </div>
-            <div className="flex-1">
-              <label className="block text-sm font-medium mb-1">
-                Price (Max)
-              </label>
-              <Input
-                type="number"
-                placeholder="1000"
-                value={filters.priceLte}
-                onChange={(e) => handleChange("priceLte", e.target.value)}
-              />
-            </div>
-          </div>
-
-          {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 w-full mt-2">
-            <Button
-              variant="outline"
-              type="button"
-              onClick={handleReset}
-              className="flex-1 py-2 bg-white rounded-full text-gray-700 cursor-pointer"
-            >
-              Reset
-            </Button>
-            <Button
-              type="submit"
-              className="flex-1 py-2 bg-[#111827] rounded-full text-white cursor-pointer"
-            >
-              Apply
-            </Button>
-          </div>
-        </form>
+      {/* Price */}
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <Label>Price (Min)</Label>
+          <Input
+            type="number"
+            placeholder="1"
+            value={filters.priceGte}
+            onChange={(e) => handleChange("priceGte", e.target.value)}
+          />
+        </div>
+        <div>
+          <Label>Price (Max)</Label>
+          <Input
+            type="number"
+            placeholder="1000"
+            value={filters.priceLte}
+            onChange={(e) => handleChange("priceLte", e.target.value)}
+          />
+        </div>
       </div>
-    </>
+
+      {/* Buttons */}
+      <div className="flex justify-between gap-5 mt-4">
+        <Button variant="outline" type="button" onClick={handleReset}>
+          Reset
+        </Button>
+        <Button type="submit">Apply</Button>
+      </div>
+
+      {error && <p className="mt-4 text-red-500">{error}</p>}
+    </form>
   );
 }

@@ -29,3 +29,4 @@ export default function useFetchProducts () {
 
   return { data, loading, error };
 };
+
