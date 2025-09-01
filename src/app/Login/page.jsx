@@ -54,6 +54,11 @@ export default function Login() {
         linkText="Create an account"
         linkTitle="New user?"
       />
+      <Link
+        href="/ForgotPassword" // ده اللينك لصفحة نسيان كلمة السر
+        linkText="Forgot Password?"
+        linkTitle="Can't access your account?"
+      />
     </section>
   );
 }
