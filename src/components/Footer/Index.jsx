@@ -15,7 +15,7 @@ export default function Index() {
       y: 0,
       transition: {
         duration: 0.6,
-        delay: i * 0.2, // كل عمود يتأخر شوية عن اللي قبله
+        delay: i * 0.2,
         ease: "easeOut",
       },
     }),
@@ -25,7 +25,6 @@ export default function Index() {
     <>
       <footer className="px-6 md:px-12 lg:px-[120px] flex items-center justify-center flex-col border-t border-solid border-[#E7E7E7]">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-[60px] gap-10 w-full">
-          {/** العمود الأول */}
           <motion.div
             custom={0}
             variants={fadeUp}
@@ -55,7 +54,6 @@ export default function Index() {
             </div>
           </motion.div>
 
-          {/** العمود الثاني */}
           <motion.div
             custom={1}
             variants={fadeUp}
@@ -64,14 +62,13 @@ export default function Index() {
             viewport={{ once: true }}
             className="flex flex-col"
           >
-            <FooterLinkTitle LinkTitle="Getting started" />
-            <FooterLink LinkText="Release Notes" />
-            <FooterLink LinkText="Upgrade Guide" />
-            <FooterLink LinkText="Browser Support" />
-            <FooterLink LinkText="Dark Mode" />
+            <FooterLinkTitle LinkTitle="Shop" />
+            <FooterLink LinkText="New Arrivals" />
+            <FooterLink LinkText="Best Sellers" />
+            <FooterLink LinkText="Offers & Deals" />
+            <FooterLink LinkText="Gift Cards" />
           </motion.div>
 
-          {/** العمود الثالث */}
           <motion.div
             custom={2}
             variants={fadeUp}
@@ -80,14 +77,13 @@ export default function Index() {
             viewport={{ once: true }}
             className="flex flex-col"
           >
-            <FooterLinkTitle LinkTitle="Explore" />
-            <FooterLink LinkText="Prototyping" />
-            <FooterLink LinkText="Design systems" />
-            <FooterLink LinkText="Pricing" />
-            <FooterLink LinkText="Security" />
+            <FooterLinkTitle LinkTitle="Customer Service" />
+            <FooterLink LinkText="Order Tracking" />
+            <FooterLink LinkText="Returns & Exchanges" />
+            <FooterLink LinkText="Shipping Info" />
+            <FooterLink LinkText="FAQs" />
           </motion.div>
 
-          {/** العمود الرابع */}
           <motion.div
             custom={3}
             variants={fadeUp}
@@ -96,14 +92,15 @@ export default function Index() {
             viewport={{ once: true }}
             className="flex flex-col"
           >
-            <FooterLinkTitle LinkTitle="Community" />
-            <FooterLink LinkText="Discussion Forums" />
-            <FooterLink LinkText="Code of Conduct" />
-            <FooterLink LinkText="Contributing" />
-            <FooterLink LinkText="API Reference" />
+            <FooterLinkTitle LinkTitle="About Us" />
+            <FooterLink LinkText="Our Story" />
+            <FooterLink LinkText="Careers" />
+            <FooterLink LinkText="Blog" />
+            <FooterLink LinkText="Contact Us" />
           </motion.div>
         </div>
       </footer>
+
       <BottomFooter />
     </>
   );
