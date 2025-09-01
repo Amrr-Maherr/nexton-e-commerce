@@ -23,7 +23,7 @@ export default function Index() {
 
   return (
     <>
-      <footer className="px-6 md:px-12 lg:px-[120px] flex items-center justify-center flex-col border-t border-solid border-[#E7E7E7]">
+      <footer className="container flex items-center justify-center flex-col border-t border-solid border-[#E7E7E7]">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-[60px] gap-10 w-full">
           <motion.div
             custom={0}

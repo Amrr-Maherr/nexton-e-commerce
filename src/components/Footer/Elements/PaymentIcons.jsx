@@ -11,7 +11,7 @@ export default function PaymentIcons() {
   ];
 
   return (
-    <div className="flex items-center justify-center gap-4 w-full">
+    <div className="flex items-center justify-center md:justify-end gap-4 w-full">
       {paymentMethods.map((method) => (
         <div key={method.alt} className="w-8 h-8 relative">
           <Image
