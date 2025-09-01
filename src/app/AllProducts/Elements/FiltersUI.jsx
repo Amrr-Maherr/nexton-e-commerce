@@ -104,7 +104,7 @@ export default function FiltersUI({ setFilteredProducts, setLoading }) {
       {/* Price */}
       <div className="grid grid-cols-2 gap-3">
         <div>
-          <Label>Price (Min)</Label>
+          <Label className="mb-3">Price (Min)</Label>
           <Input
             type="number"
             placeholder="1"
@@ -113,7 +113,7 @@ export default function FiltersUI({ setFilteredProducts, setLoading }) {
           />
         </div>
         <div>
-          <Label>Price (Max)</Label>
+          <Label className="mb-3">Price (Max)</Label>
           <Input
             type="number"
             placeholder="1000"
@@ -124,11 +124,23 @@ export default function FiltersUI({ setFilteredProducts, setLoading }) {
       </div>
 
       {/* Buttons */}
-      <div className="flex justify-between gap-5 mt-4">
-        <Button variant="outline" type="button" onClick={handleReset}>
+      <div className="flex justify-between gap-2 mt-4">
+        <Button
+          variant="outline"
+          className="flex-1 rounded-full"
+          type="button"
+          onClick={handleReset}
+          disabled={loading}
+        >
           Reset
         </Button>
-        <Button type="submit">Apply</Button>
+        <Button
+          type="submit"
+          className="flex-1 rounded-full"
+          disabled={loading}
+        >
+          Apply
+        </Button>
       </div>
 
       {error && <p className="mt-4 text-red-500">{error}</p>}
