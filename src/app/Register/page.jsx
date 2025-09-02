@@ -27,7 +27,6 @@ export default function Register() {
       toast.warning("⚠️ Please fill all fields");
     } else {
       Register(formData);
-      // تفريغ الحقول بعد التسجيل
       setFormData({
         name: "",
         email: "",

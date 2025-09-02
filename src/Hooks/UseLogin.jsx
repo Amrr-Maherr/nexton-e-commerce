@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 export default function useLogin() {
   const [successMessage, setSuccessMessage] = useState(null);
@@ -13,16 +14,25 @@ export default function useLogin() {
         `https://ecommerce.routemisr.com/api/v1/auth/signin`,
         loginInfo
       );
-
-      setSuccessMessage(response.data);
-      localStorage.setItem("userToken", response.data.token);
+      setSuccessMessage(response.data.message);
     } catch (error) {
-      console.error(error);
-      setErrorMessage(error.response?.data?.message || "Login failed");
+      setErrorMessage(error.response?.data?.message);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (successMessage) {
+      toast.success(successMessage || "Login successful 🎉");
+    }
+  }, [successMessage]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      toast.error(errorMessage || "Something went wrong ❌");
+    }
+  }, [errorMessage]);
 
   return { successMessage, errorMessage, loading, login };
 }
