@@ -15,7 +15,7 @@ export default function Register() {
   const [Phone, setPhone] = useState(null);
   const [Password, setPassword] = useState(null);
   const [PasswordConfirm, setPasswordConfirm] = useState(null);
-  const { SuccessMessage, ErrorMessage, Loading, Register } = useRegister();
+  const {Loading, Register } = useRegister();
 
   const handelRegister = () => {
     if (!name || !Email || !Phone || !PasswordConfirm || !Password) {
@@ -29,8 +29,14 @@ export default function Register() {
         rePassword: PasswordConfirm,
       };
       Register(RegisterInfo);
+       setName("");
+       setEmail("");
+       setPhone("");
+       setPassword("");
+       setPasswordConfirm("");
     }
   };
+  
   return (
     <section className="pt-[40px] pb-[72px] max-w-[440px] mx-auto gap-[24px] flex items-center justify-center flex-col px-[24px] md:px-0">
       <Title TitleText="Register" />
@@ -44,6 +50,7 @@ export default function Register() {
           Name
         </Label>
         <Input
+          value={name}
           onChange={(value) => setName(value.target.value)}
           type="text"
           id="name"
@@ -61,6 +68,7 @@ export default function Register() {
           Email
         </Label>
         <Input
+          value={Email}
           onChange={(value) => setEmail(value.target.value)}
           type="email"
           id="email"
@@ -78,6 +86,7 @@ export default function Register() {
           Phone
         </Label>
         <Input
+          value={Phone}
           onChange={(value) => setPhone(value.target.value)}
           type="tel"
           id="phone"
@@ -95,6 +104,7 @@ export default function Register() {
           Password
         </Label>
         <Input
+          value={Password}
           onChange={(value) => setPassword(value.target.value)}
           type="password"
           id="password"
@@ -112,6 +122,7 @@ export default function Register() {
           Confirm Password
         </Label>
         <Input
+          value={PasswordConfirm}
           onChange={(value) => setPasswordConfirm(value.target.value)}
           type="password"
           id="rePassword"
