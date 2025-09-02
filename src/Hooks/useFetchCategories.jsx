@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function useFetchCategories() {
   const [categories, setCategories] = useState([]);
@@ -10,13 +11,12 @@ export default function useFetchCategories() {
     const fetchCategories = async () => {
       try {
         setLoading(true);
-        const res = await fetch(
+        const res = await axios.get(
           "https://ecommerce.routemisr.com/api/v1/categories"
         );
-        const data = await res.json();
-        setCategories(data.data || []);
+        setCategories(res.data.data || []);
       } catch (err) {
-        setError(err.message);
+        setError(err.response?.data?.message || err.message);
       } finally {
         setLoading(false);
       }
