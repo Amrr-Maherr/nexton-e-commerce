@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-
+import { useRouter } from "next/navigation";
 export default function useLogin() {
   const [successMessage, setSuccessMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
   const [loading, setLoading] = useState(false);
-
+const router = useRouter();
   const login = async (loginInfo) => {
     try {
       setLoading(true);
@@ -25,6 +25,7 @@ export default function useLogin() {
   useEffect(() => {
     if (successMessage) {
       toast.success(successMessage || "Login successful 🎉");
+      router.push("/");
     }
   }, [successMessage]);
 
