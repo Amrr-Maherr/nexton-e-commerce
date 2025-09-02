@@ -16,7 +16,7 @@ export default function useRegister() {
       if (Response.data.token) {
         localStorage.setItem("token", Response.data.token);
       }
-      setSuccessMessage(Response.data);
+      setSuccessMessage(Response.data.message);
     } catch (error) {
       setErrorMessage(error.response?.data || error.message);
     } finally {
@@ -26,7 +26,7 @@ export default function useRegister() {
 
   useEffect(() => {
     if (SuccessMessage) {
-      toast.success(SuccessMessage.message || "Registered successfully 🎉");
+      toast.success(SuccessMessage || "Registered successfully 🎉");
     }
   }, [SuccessMessage]);
   useEffect(() => {
