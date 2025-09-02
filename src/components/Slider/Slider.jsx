@@ -25,10 +25,7 @@ export default function Slider({
         ...swiperOptions.autoplay,
       }}
       loop={swiperOptions.loop ?? true}
-      pagination={{
-        dynamicBullets: true,
-        ...swiperOptions.pagination,
-      }}
+      pagination={swiperOptions.pagination ?? false}
       breakpoints={{
         640: {
           slidesPerView: Math.min(slidesPerView, 2),
