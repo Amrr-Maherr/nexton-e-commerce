@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function useFetchProductDetails(id) {
   const [product, setProduct] = useState(null);
@@ -14,13 +15,14 @@ export default function useFetchProductDetails(id) {
       setError(null);
 
       try {
-        const res = await fetch(
+        const res = await axios.get(
           `https://ecommerce.routemisr.com/api/v1/products/${id}`
         );
-        const result = await res.json();
-        setProduct(result.data || null);
+        setProduct(res.data.data || null);
       } catch (err) {
-        setError(err.message || "Something went wrong");
+        setError(
+          err.response?.data?.message || err.message || "Something went wrong"
+        );
       } finally {
         setLoading(false);
       }
