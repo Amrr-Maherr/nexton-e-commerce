@@ -5,38 +5,39 @@ import { Label } from "@/components/ui/label";
 import Title from "../../components/authentication/Elements/Title";
 import LineAcross from "../../components/authentication/Elements/LineAcross";
 import Link from "../../components/authentication/Elements/Link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useRegister from "@/Hooks/useRegister";
 import { toast } from "sonner";
 
 export default function Register() {
-  const [name, setName] = useState(null);
-  const [Email, setEmail] = useState(null);
-  const [Phone, setPhone] = useState(null);
-  const [Password, setPassword] = useState(null);
-  const [PasswordConfirm, setPasswordConfirm] = useState(null);
-  const {Loading, Register } = useRegister();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    rePassword: "",
+  });
+
+  const { Loading, Register } = useRegister();
 
   const handelRegister = () => {
-    if (!name || !Email || !Phone || !PasswordConfirm || !Password) {
+    const { name, email, phone, password, rePassword } = formData;
+
+    if (!name || !email || !phone || !password || !rePassword) {
       toast.warning("⚠️ Please fill all fields");
     } else {
-      const RegisterInfo = {
-        name,
-        email: Email,
-        phone: Phone,
-        password: Password,
-        rePassword: PasswordConfirm,
-      };
-      Register(RegisterInfo);
-       setName("");
-       setEmail("");
-       setPhone("");
-       setPassword("");
-       setPasswordConfirm("");
+      Register(formData);
+      // تفريغ الحقول بعد التسجيل
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        rePassword: "",
+      });
     }
   };
-  
+
   return (
     <section className="pt-[40px] pb-[72px] max-w-[440px] mx-auto gap-[24px] flex items-center justify-center flex-col px-[24px] md:px-0">
       <Title TitleText="Register" />
@@ -50,8 +51,8 @@ export default function Register() {
           Name
         </Label>
         <Input
-          value={name}
-          onChange={(value) => setName(value.target.value)}
+          value={formData.name}
+          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           type="text"
           id="name"
           placeholder="Enter your full name"
@@ -68,8 +69,8 @@ export default function Register() {
           Email
         </Label>
         <Input
-          value={Email}
-          onChange={(value) => setEmail(value.target.value)}
+          value={formData.email}
+          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           type="email"
           id="email"
           placeholder="Enter your email"
@@ -86,8 +87,8 @@ export default function Register() {
           Phone
         </Label>
         <Input
-          value={Phone}
-          onChange={(value) => setPhone(value.target.value)}
+          value={formData.phone}
+          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
           type="tel"
           id="phone"
           placeholder="Enter your phone number"
@@ -104,8 +105,10 @@ export default function Register() {
           Password
         </Label>
         <Input
-          value={Password}
-          onChange={(value) => setPassword(value.target.value)}
+          value={formData.password}
+          onChange={(e) =>
+            setFormData({ ...formData, password: e.target.value })
+          }
           type="password"
           id="password"
           placeholder="Enter your password"
@@ -122,8 +125,10 @@ export default function Register() {
           Confirm Password
         </Label>
         <Input
-          value={PasswordConfirm}
-          onChange={(value) => setPasswordConfirm(value.target.value)}
+          value={formData.rePassword}
+          onChange={(e) =>
+            setFormData({ ...formData, rePassword: e.target.value })
+          }
           type="password"
           id="rePassword"
           placeholder="Confirm your password"
