@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function useFetchBrands() {
   const [brands, setBrands] = useState([]);
@@ -10,13 +11,12 @@ export default function useFetchBrands() {
     const fetchBrands = async () => {
       try {
         setLoading(true);
-        const res = await fetch(
+        const res = await axios.get(
           "https://ecommerce.routemisr.com/api/v1/brands"
         );
-        const data = await res.json();
-        setBrands(data.data || []);
+        setBrands(res.data.data || []);
       } catch (err) {
-        setError(err.message);
+        setError(err.response?.data?.message || err.message);
       } finally {
         setLoading(false);
       }
