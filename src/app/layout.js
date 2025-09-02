@@ -4,6 +4,7 @@ import Index from "@/components/Header";
 import Footer from "@/components/Footer/Index";
 import WhatsappButton from "@/components/WhatsappButton/WhatsappButton";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import { Toaster } from "@/components/ui/sonner";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -31,8 +32,9 @@ export default function RootLayout({ children }) {
       <body className={`${roboto.variable} ${robotoMono.variable} antialiased`}>
         <Index />
         {children}
-        <WhatsappButton/>
-        <ScrollToTop/>
+        <WhatsappButton />
+        <ScrollToTop />
+        <Toaster />
         <Footer />
       </body>
     </html>

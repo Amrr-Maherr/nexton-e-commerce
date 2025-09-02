@@ -1,6 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { toast } from "sonner";
 export default function useRegister() {
   const [SuccessMessage, setSuccessMessage] = useState(null);
   const [ErrorMessage, setErrorMessage] = useState(null);
@@ -13,14 +13,31 @@ export default function useRegister() {
         `https://ecommerce.routemisr.com/api/v1/auth/signup`,
         RegisterInfo
       );
-      setSuccessMessage(Response);
+      if (Response.data.token) {
+        localStorage.setItem("token", Response.data.token);
+      }
+      setSuccessMessage(Response.data);
     } catch (error) {
-      console.log(error);
-      setErrorMessage(error);
+      setErrorMessage(error.response?.data || error.message);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (SuccessMessage) {
+      toast.success(SuccessMessage.message || "Registered successfully 🎉");
+    }
+  }, [SuccessMessage]);
+  useEffect(() => {
+    if (ErrorMessage) {
+      const errMsg =
+        ErrorMessage?.errors?.msg ||
+        ErrorMessage?.message ||
+        "Something went wrong ❌";
+      toast.error(errMsg);
+    }
+  }, [ErrorMessage]);
 
   return { SuccessMessage, ErrorMessage, Loading, Register };
 }
