@@ -11,25 +11,38 @@ import { Button } from "@/components/ui/button";
 import {
   Menu,
   Home,
-  ShoppingBag,
+  ShoppingCart,
   Package,
   Heart,
   User,
   Phone,
+  LogIn,
+  LogOut,
+  Info,
 } from "lucide-react";
 import Logo from "@/components/Header/Elements/Logo";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function SideBar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleAuth = () => {
+    setIsLoggedIn(!isLoggedIn);
+  };
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setIsLoggedIn(true)
+    } else {
+      setIsLoggedIn(false)
+    }
+  })
+
   return (
     <div>
       <Sheet>
         <SheetTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="rounded-xl"
-          >
+          <Button variant="outline" size="icon" className="rounded-xl cursor-pointer border-none shadow-none">
             <Menu className="h-6 w-6" />
           </Button>
         </SheetTrigger>
@@ -40,11 +53,11 @@ export default function SideBar() {
         >
           <SheetHeader className="border-b p-6">
             <SheetTitle className="text-xl font-bold tracking-wide">
-              <Logo/>
+              <Logo />
             </SheetTitle>
           </SheetHeader>
 
-          <nav className="flex flex-col mt-4">
+          <nav className="flex flex-col mt-4 flex-1">
             <Link
               href="/"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
@@ -55,7 +68,7 @@ export default function SideBar() {
               href="/AllProducts"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
-              <ShoppingBag className="h-5 w-5" /> Shop
+              <ShoppingCart className="h-5 w-5" /> Shop
             </Link>
             <Link
               href="#"
@@ -76,12 +89,36 @@ export default function SideBar() {
               <User className="h-5 w-5" /> Account
             </Link>
             <Link
+              href="/About"
+              className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
+            >
+              <Info className="h-5 w-5" /> About
+            </Link>
+            <Link
               href="#"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
               <Phone className="h-5 w-5" /> Contact
             </Link>
           </nav>
+
+          <div className="p-6 border-t flex flex-col gap-3">
+            <Button
+              variant="outline"
+              onClick={handleAuth}
+              className="flex items-center justify-center gap-2"
+            >
+              {isLoggedIn ? (
+                <>
+                  <LogOut className="h-5 w-5" /> Logout
+                </>
+              ) : (
+                <>
+                  <LogIn className="h-5 w-5" /> Login
+                </>
+              )}
+            </Button>
+          </div>
         </SheetContent>
       </Sheet>
     </div>
