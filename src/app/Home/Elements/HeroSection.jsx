@@ -6,7 +6,12 @@ import Image from "next/image";
 
 export default function Page() {
   return (
-    <section className="w-full h-full relative">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.6, delay: 0.3 }}
+      className="w-full h-full relative"
+    >
       <div className="relative">
         <figure>
           <Image
@@ -22,7 +27,7 @@ export default function Page() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
             className="text-base md:text-xl font-medium text-[#4B5563]"
           >
             Starting from: $49.99
@@ -49,6 +54,6 @@ export default function Page() {
           </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
