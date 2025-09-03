@@ -30,7 +30,7 @@ const router = useRouter();
   }, [successMessage]);
 
   useEffect(() => {
-    if (errorMessage) {
+    if (error) {
       toast.error(errorMessage || "Something went wrong ❌");
     }
   }, [errorMessage]);

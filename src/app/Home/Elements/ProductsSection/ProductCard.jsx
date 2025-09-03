@@ -1,11 +1,15 @@
 "use client";
+import useAddToCart from "@/Hooks/useAddToCart";
 import { Star, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
+import { MoonLoader } from "react-spinners";
 export default function ProductCard({ product }) {
+  const { addToCart, loading } = useAddToCart();
     console.log(product,"product");
-    
+     const handleAddToCart =  () => {
+          addToCart(product.id);
+     };
   return (
     <div className="rounded-lg overflow-hidden w-full mx-auto bg-white">
       <div className="relative w-full h-[200px] md:h-[409px]">
@@ -17,8 +21,15 @@ export default function ProductCard({ product }) {
             className="object-cover rounded-lg"
           />
         </Link>
-        <div className="absolute cursor-pointer right-[15px] top-[15px] w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center">
-          <ShoppingBag className="w-5 h-5" />
+        <div
+          onClick={handleAddToCart}
+          className="absolute cursor-pointer right-[15px] top-[15px] w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center"
+        >
+          {loading ? (
+            <MoonLoader color="#111827" size={20} />
+          ) : (
+            <ShoppingBag className="w-5 h-5" />
+          )}
         </div>
       </div>
       <div className="flex items-center justify-between px-[16px] mt-[20px]">
