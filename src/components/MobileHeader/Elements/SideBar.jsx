@@ -30,19 +30,24 @@ export default function SideBar() {
   const handleAuth = () => {
     setIsLoggedIn(!isLoggedIn);
   };
+
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      setIsLoggedIn(true)
+      setIsLoggedIn(true);
     } else {
-      setIsLoggedIn(false)
+      setIsLoggedIn(false);
     }
-  })
+  });
 
   return (
     <div>
       <Sheet>
         <SheetTrigger asChild>
-          <Button variant="outline" size="icon" className="rounded-xl cursor-pointer border-none shadow-none">
+          <Button
+            variant="outline"
+            size="icon"
+            className="rounded-xl cursor-pointer border-none shadow-none"
+          >
             <Menu className="h-6 w-6" />
           </Button>
         </SheetTrigger>
@@ -69,6 +74,12 @@ export default function SideBar() {
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
               <ShoppingCart className="h-5 w-5" /> Shop
+            </Link>
+            <Link
+              href="/CartPage"
+              className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
+            >
+              <ShoppingCart className="h-5 w-5" /> Cart
             </Link>
             <Link
               href="#"
