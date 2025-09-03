@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import useCart from "@/hooks/useCart";
+import Loader from "@/components/Loader/Loader";
 
 export default function CartProducts() {
   const { cart, loading, error } = useCart();
@@ -11,7 +12,7 @@ export default function CartProducts() {
     <div className="md:col-span-2 space-y-4 pr-3">
       <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
 
-      {loading && <p>Loading...</p>}
+      {loading && <Loader/>}
       {error && <p className="text-red-500">{error}</p>}
 
       {cart?.data?.products?.length > 0 ? (
