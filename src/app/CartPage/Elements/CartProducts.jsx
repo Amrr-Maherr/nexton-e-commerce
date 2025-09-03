@@ -1,6 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function CartProducts() {
   const [cart, setCart] = useState(null);
@@ -30,22 +32,28 @@ export default function CartProducts() {
       <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
       {loading && <p>Loading...</p>}
       {cart?.products?.length > 0 ? (
-        cart.products.map((product) => (
-          <div
+        cart.products.map((product, index) => (
+          <motion.div
             key={product._id}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: index * 0.1 }}
             className="flex items-center gap-4 p-4 border rounded-lg shadow-sm bg-white"
           >
-            <img
-              src={product.product.imageCover}
-              alt={product.product.title}
-              className="w-20 h-20 object-cover rounded"
-            />
+            <div className="relative w-20 h-20">
+              <Image
+                src={product.product.imageCover}
+                alt={product.product.title}
+                fill
+                className="object-cover rounded"
+              />
+            </div>
             <div className="flex-1">
               <h3 className="font-medium">{product.product.title}</h3>
               <p className="text-gray-500">Quantity: {product.count}</p>
             </div>
             <p className="font-semibold">{product.price * product.count} EGP</p>
-          </div>
+          </motion.div>
         ))
       ) : (
         <p>No products in your cart.</p>
