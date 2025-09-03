@@ -26,7 +26,7 @@ export default function CartProducts() {
   }, []);
 
   return (
-    <div className="md:col-span-2 space-y-4 max-h-[600px] overflow-y-auto pr-3">
+    <div className="md:col-span-2 space-y-4 pr-3">
       <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
       {loading && <p>Loading...</p>}
       {cart?.products?.length > 0 ? (
