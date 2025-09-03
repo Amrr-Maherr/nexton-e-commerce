@@ -14,6 +14,9 @@ const router = useRouter();
         `https://ecommerce.routemisr.com/api/v1/auth/signin`,
         loginInfo
       );
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+      }
       setSuccessMessage(response.data.message);
     } catch (error) {
       setErrorMessage(error.response?.data?.message);
@@ -30,7 +33,7 @@ const router = useRouter();
   }, [successMessage]);
 
   useEffect(() => {
-    if (error) {
+    if (errorMessage) {
       toast.error(errorMessage || "Something went wrong ❌");
     }
   }, [errorMessage]);

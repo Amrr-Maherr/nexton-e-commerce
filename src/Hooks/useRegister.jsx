@@ -13,9 +13,6 @@ export default function useRegister() {
         `https://ecommerce.routemisr.com/api/v1/auth/signup`,
         RegisterInfo
       );
-      if (Response.data.token) {
-        localStorage.setItem("token", Response.data.token);
-      }
       setSuccessMessage(Response.data.message);
     } catch (error) {
       setErrorMessage(error.response?.data || error.message);
