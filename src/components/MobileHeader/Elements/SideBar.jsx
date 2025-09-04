@@ -12,6 +12,7 @@ import {
   Menu,
   Home,
   ShoppingCart,
+  ShoppingBag,
   Package,
   Heart,
   User,
@@ -73,7 +74,7 @@ export default function SideBar() {
               href="/AllProducts"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
-              <ShoppingCart className="h-5 w-5" /> Shop
+              <ShoppingBag className="h-5 w-5" /> Shop
             </Link>
             <Link
               href="/CartPage"
@@ -117,7 +118,7 @@ export default function SideBar() {
             <Button
               variant="outline"
               onClick={handleAuth}
-              className="flex items-center justify-center gap-2"
+              className="flex items-center justify-center gap-2 "
             >
               {isLoggedIn ? (
                 <>
@@ -125,7 +126,12 @@ export default function SideBar() {
                 </>
               ) : (
                 <>
-                  <LogIn className="h-5 w-5" /> Login
+                  <Link
+                    href="/Login"
+                    className="flex items-center justify-center gap-2 cursor-pointer w-full h-full"
+                  >
+                    <LogIn className="h-5 w-5" /> Login
+                  </Link>
                 </>
               )}
             </Button>
