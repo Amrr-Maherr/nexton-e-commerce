@@ -9,8 +9,20 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
+import useCart from "@/Hooks/useCart";
+import Loader from "@/components/Loader/Loader";
+import Link from "next/link";
 
 export default function MiniCart() {
+  const { cart, loading, error } = useCart();
+  
+
+  const products = cart?.data?.products || [];
+
+  const TotalPrice = cart?.data?.totalCartPrice || 0;
+
+
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -25,22 +37,74 @@ export default function MiniCart() {
 
       <SheetContent
         side="right"
-        className="w-[350px] sm:w-[500px] flex flex-col items-center justify-center px-5 py-10"
+        className="w-[350px] sm:w-[500px] flex flex-col justify-between px-5 py-2"
       >
         <SheetHeader>
-          <SheetTitle>Your Cart</SheetTitle>
+          <SheetTitle className="text-lg sm:text-xl font-semibold">
+            Your Cart
+          </SheetTitle>
         </SheetHeader>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="flex-1 mt-4 overflow-y-auto">
+              {error && <p className="text-red-500 text-center">{error}</p>}
 
-        <div className="flex flex-col items-center justify-center mt-6">
-          <img
-            src="/images/651228170658Empty_Order.gif"
-            alt="Empty Cart"
-            className="w-full max-w-xs sm:max-w-sm"
-          />
-          <p className="mt-4 text-gray-500 text-center text-sm sm:text-base">
-            Your cart is currently empty.
-          </p>
-        </div>
+              {products.length > 0 ? (
+                <div className="flex flex-col gap-4">
+                  {products.map((item) => (
+                    <div
+                      key={item._id}
+                      className="flex items-center justify-between p-2 border rounded-lg"
+                    >
+                      <img
+                        src={item.product.imageCover}
+                        alt={item.product.title}
+                        className="w-16 h-16 object-cover rounded-md"
+                      />
+                      <div className="flex-1 px-3">
+                        <p className="font-medium text-sm sm:text-base">
+                          {item.product.title.slice(0, 5)}...
+                        </p>
+                        <p className="text-gray-500 text-xs sm:text-sm">
+                          {item.count} x ${item.price}
+                        </p>
+                      </div>
+                      <p className="font-medium text-sm sm:text-base">
+                        ${item.price * item.count}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="flex flex-col items-center justify-center mt-10">
+                  <img
+                    src="/images/651228170658Empty_Order.gif"
+                    alt="Empty Cart"
+                    className="w-full max-w-xs sm:max-w-sm"
+                  />
+                  <p className="mt-4 text-gray-500 text-center text-sm sm:text-base">
+                    Your cart is currently empty.
+                  </p>
+                </div>
+              )}
+            </div>
+            {TotalPrice && (
+              <div className="flex justify-between font-semibold text-base sm:text-lg pt-2 border-t mt-2">
+                <span>Total:</span>
+                <span>${TotalPrice}</span>
+              </div>
+            )}
+            {products.length > 0 && (
+              <Link href="/cart" className="mt-4 w-full">
+                <Button className="w-full py-3 bg-black rounded-full cursor-pointer text-white font-semibold">
+                  Go to Cart
+                </Button>
+              </Link>
+            )}
+          </>
+        )}
       </SheetContent>
     </Sheet>
   );
