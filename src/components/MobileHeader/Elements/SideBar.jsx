@@ -139,26 +139,29 @@ export default function SideBar() {
           </nav>
 
           <div className="p-6 border-t flex flex-col gap-3">
-            <Button
-              variant="outline"
-              onClick={handleAuth}
-              className="flex items-center justify-center gap-2 "
-            >
-              {isLoggedIn ? (
-                <>
-                  <LogOut className="h-5 w-5" /> Logout
-                </>
-              ) : (
-                <SheetClose asChild>
-                  <Link
-                    href="/Login"
-                    className="flex items-center justify-center gap-2 cursor-pointer w-full h-full"
+            {isLoggedIn ? (
+              <Button
+                variant="outline"
+                onClick={handleAuth}
+                className="flex items-center justify-center gap-2 cursor-pointer bg-black text-white rounded-full"
+              >
+                <LogOut className="h-5 w-5" /> Logout
+              </Button>
+            ) : (
+              <SheetClose asChild>
+                <Link
+                  href="/Login"
+                  className="flex items-center justify-center gap-2 cursor-pointer w-full h-full"
+                >
+                  <Button
+                    variant="outline"
+                    className="flex items-center justify-center bg-black text-white rounded-full cursor-pointer gap-2 w-full h-full"
                   >
                     <LogIn className="h-5 w-5" /> Login
-                  </Link>
-                </SheetClose>
-              )}
-            </Button>
+                  </Button>
+                </Link>
+              </SheetClose>
+            )}
           </div>
         </SheetContent>
       </Sheet>
