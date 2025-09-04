@@ -37,98 +37,7 @@ export default function CartSidebar() {
   const total = cart?.data?.totalCartPrice || 0;
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Customer Info */}
-      <div className="border rounded-lg shadow-sm bg-white p-4">
-        <h3 className="text-lg font-semibold mb-4">Customer Info</h3>
-        <div className="grid grid-cols-2 gap-3">
-          <div>
-            <Label>First Name</Label>
-            <Input
-              type="text"
-              name="firstName"
-              placeholder="John"
-              value={customer.firstName}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <Label>Last Name</Label>
-            <Input
-              type="text"
-              name="lastName"
-              placeholder="Doe"
-              value={customer.lastName}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
-        <div className="mt-3">
-          <Label>Phone</Label>
-          <Input
-            type="tel"
-            name="phone"
-            placeholder="+20 123 456 7890"
-            value={customer.phone}
-            onChange={handleChange}
-            required
-          />
-        </div>
-      </div>
-
-      {/* Shipping Address */}
-      <div className="border rounded-lg shadow-sm bg-white p-4">
-        <h3 className="text-lg font-semibold mb-4">Shipping Address</h3>
-        <div className="space-y-3">
-          <div>
-            <Label>Street Address</Label>
-            <Input
-              type="text"
-              name="address"
-              placeholder="123 Main St"
-              value={customer.address}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <Label>City</Label>
-            <Input
-              type="text"
-              name="city"
-              placeholder="Cairo"
-              value={customer.city}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <Label>Country</Label>
-            <Input
-              type="text"
-              name="country"
-              placeholder="Egypt"
-              value={customer.country}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div>
-            <Label>Postal Code</Label>
-            <Input
-              type="text"
-              name="postalCode"
-              placeholder="12345"
-              value={customer.postalCode}
-              onChange={handleChange}
-              required
-            />
-          </div>
-        </div>
-      </div>
-
+    <div className="space-y-6">
       {/* Payment Method */}
       <div className="border rounded-lg shadow-sm bg-white p-4">
         <h3 className="text-lg font-semibold mb-4">Payment Method</h3>
@@ -157,11 +66,103 @@ export default function CartSidebar() {
           <Button type="submit" className="w-full">
             Confirm Order
           </Button>
-
-          {/* زر PayPal يظهر فقط لو المستخدم اختر الدفع أونلاين */}
           {payment === "online" && <PayPalButton amount={total} />}
         </div>
       </div>
-    </form>
+      {payment === "cash" && (
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Customer Info */}
+          <div className="border rounded-lg shadow-sm bg-white p-4">
+            <h3 className="text-lg font-semibold mb-4">Customer Info</h3>
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <Label>First Name</Label>
+                <Input
+                  type="text"
+                  name="firstName"
+                  placeholder="John"
+                  value={customer.firstName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <Label>Last Name</Label>
+                <Input
+                  type="text"
+                  name="lastName"
+                  placeholder="Doe"
+                  value={customer.lastName}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+            <div className="mt-3">
+              <Label>Phone</Label>
+              <Input
+                type="tel"
+                name="phone"
+                placeholder="+20 123 456 7890"
+                value={customer.phone}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          {/* Shipping Address */}
+          <div className="border rounded-lg shadow-sm bg-white p-4">
+            <h3 className="text-lg font-semibold mb-4">Shipping Address</h3>
+            <div className="space-y-3">
+              <div>
+                <Label>Street Address</Label>
+                <Input
+                  type="text"
+                  name="address"
+                  placeholder="123 Main St"
+                  value={customer.address}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <Label>City</Label>
+                <Input
+                  type="text"
+                  name="city"
+                  placeholder="Cairo"
+                  value={customer.city}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <Label>Country</Label>
+                <Input
+                  type="text"
+                  name="country"
+                  placeholder="Egypt"
+                  value={customer.country}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div>
+                <Label>Postal Code</Label>
+                <Input
+                  type="text"
+                  name="postalCode"
+                  placeholder="12345"
+                  value={customer.postalCode}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      )}
+    </div>
   );
 }
