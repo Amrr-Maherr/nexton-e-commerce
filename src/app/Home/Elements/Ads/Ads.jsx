@@ -12,7 +12,7 @@ export default function Ads({
   imageAlt = "Hero background",
 }) {
   return (
-    <section className="w-full h-full relative px-[24px] md:px-[120px] my-[52px]">
+    <section className="w-full h-full relative container my-[52px]">
       <div className="relative">
         <figure className="md:h-[500px] h-[200px]">
           <Image

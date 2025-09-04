@@ -13,7 +13,7 @@ export default function Category() {
     }
     return (
       <>
-        <section className="py-20 px-[20px] md:px-[120px]">
+        <section className="py-10 md:py-20 container">
           <SectionTitle
             title="Start exploring."
             spanTitle="Good things are waiting for you"

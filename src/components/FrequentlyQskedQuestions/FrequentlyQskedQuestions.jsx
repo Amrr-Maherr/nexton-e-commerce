@@ -7,7 +7,7 @@ import {
 
 export default function FrequentlyAskedQuestions() {
   return (
-    <Accordion className="px-[20px] md:px-[120px] my-5" type="single" collapsible>
+    <Accordion className="py-10 md:py-20 container" type="single" collapsible>
       <AccordionItem value="item-1">
         <AccordionTrigger>How can I track my order?</AccordionTrigger>
         <AccordionContent>

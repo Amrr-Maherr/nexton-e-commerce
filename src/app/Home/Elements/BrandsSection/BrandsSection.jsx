@@ -14,7 +14,7 @@ export default function BrandsSection() {
     }
   return (
     <>
-      <section className="py-20 px-[20px] md:px-[120px]">
+      <section className="py-10 md:py-20 container">
         <SectionTitle
           title="Discover more."
           spanTitle="Amazing experiences are ahead for you"

@@ -43,7 +43,7 @@ export default function BrandInfo() {
   };
 
   return (
-    <section className="flex items-center justify-center flex-col px-6 md:px-[120px] py-8 md:py-[52px]">
+    <section className="flex container items-center justify-center flex-col py-8 md:py-[52px]">
       <SectionTitle title="Nexton®" spanTitle="always with you" />
 
       <motion.div
@@ -51,7 +51,7 @@ export default function BrandInfo() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
-        className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full"
+        className="grid  grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 w-full"
       >
         {Data?.map((item, index) => (
           <motion.div key={index} variants={cardVariants}>
