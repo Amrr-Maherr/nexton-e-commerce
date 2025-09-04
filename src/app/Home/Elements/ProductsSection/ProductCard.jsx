@@ -1,15 +1,22 @@
 "use client";
 import useAddToCart from "@/Hooks/useAddToCart";
-import { Star, ShoppingBag } from "lucide-react";
+import { Star, ShoppingBag, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MoonLoader } from "react-spinners";
+
 export default function ProductCard({ product }) {
   const { addToCart, loading } = useAddToCart();
-    console.log(product,"product");
-     const handleAddToCart =  () => {
-          addToCart(product.id);
-     };
+  console.log(product, "product");
+
+  const handleAddToCart = () => {
+    addToCart(product.id);
+  };
+
+  const handleAddToWishlist = () => {
+    console.log("Added to wishlist:", product.id);
+  };
+
   return (
     <div className="rounded-lg overflow-hidden w-full mx-auto bg-white">
       <div className="relative w-full h-[200px] md:h-[409px]">
@@ -31,13 +38,21 @@ export default function ProductCard({ product }) {
             <ShoppingBag className="w-5 h-5" />
           )}
         </div>
+        <div
+          onClick={handleAddToWishlist}
+          className="absolute cursor-pointer left-[15px] top-[15px] w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center"
+        >
+          <Heart className="w-5 h-5 text-red-500" />
+        </div>
       </div>
+
       <div className="flex items-center justify-between px-[16px] mt-[20px]">
         <div className="text-start font-semibold text-[#111827] text-[16px]">
           {product.title.slice(0, 10)}..
         </div>
         <div className="text-[16px] text-[#111827]">${product.price}</div>
       </div>
+
       <div className="px-[16px] gap-[15px] flex items-start justify-center flex-col">
         <div className="text-[#4B5563] text-[14px] font-normal">
           {product.category.name}

@@ -5,6 +5,7 @@ import useSearch from "@/Hooks/useSearch";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
+import Image from "next/image";
 
 export default function SearchInput() {
   const [query, setQuery] = useState("");
@@ -41,10 +42,13 @@ export default function SearchInput() {
                 onClick={() => setQuery(item.title)}
               >
                 <span className="truncate">{item.title}</span>
-                <img
+                <Image
                   src={item.imageCover}
                   alt={item.title}
-                  className="w-10 h-10 object-cover rounded ml-2"
+                  width={100}
+                  height={100}
+                  quality={100}
+                  className="object-cover rounded ml-2"
                 />
               </Link>
             ))}

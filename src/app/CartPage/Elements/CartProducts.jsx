@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Loader from "@/components/Loader/Loader";
 import useCart from "@/Hooks/useCart";
+import Link from "next/link";
 
 export default function CartProducts() {
   const { cart, loading, error } = useCart();
@@ -12,7 +13,7 @@ export default function CartProducts() {
     <div className="md:col-span-2 space-y-4 pr-3">
       <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
 
-      {loading && <Loader/>}
+      {loading && <Loader />}
       {error && <p className="text-red-500">{error}</p>}
 
       {cart?.data?.products?.length > 0 ? (
@@ -24,13 +25,15 @@ export default function CartProducts() {
             transition={{ duration: 0.3 }}
             className="flex items-center gap-4 p-4 border rounded-lg shadow-sm bg-white"
           >
-            <Image
-              src={product.product.imageCover}
-              alt={product.product.title}
-              width={80}
-              height={80}
-              className="object-cover rounded"
-            />
+            <Link href={`/product/${product.id}`}>
+              <Image
+                src={product.product.imageCover}
+                alt={product.product.title}
+                width={80}
+                height={80}
+                className="object-cover rounded"
+              />
+            </Link>
             <div className="flex-1">
               <h3 className="font-medium">{product.product.title}</h3>
               <p className="text-gray-500">Quantity: {product.count}</p>
