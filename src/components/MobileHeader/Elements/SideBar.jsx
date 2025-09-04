@@ -2,6 +2,7 @@
 
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -64,54 +65,77 @@ export default function SideBar() {
           </SheetHeader>
 
           <nav className="flex flex-col mt-4 flex-1">
-            <Link
-              href="/"
-              className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
-            >
-              <Home className="h-5 w-5" /> Home
-            </Link>
-            <Link
-              href="/AllProducts"
-              className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
-            >
-              <ShoppingBag className="h-5 w-5" /> Shop
-            </Link>
-            <Link
-              href="/CartPage"
-              className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
-            >
-              <ShoppingCart className="h-5 w-5" /> Cart
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
-            >
-              <Package className="h-5 w-5" /> Orders
-            </Link>
-            <Link
-              href="/FavoritesPage"
-              className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
-            >
-              <Heart className="h-5 w-5" /> Wishlist
-            </Link>
-            <Link
-              href="/fgfgfg"
-              className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
-            >
-              <User className="h-5 w-5" /> Account
-            </Link>
-            <Link
-              href="/About"
-              className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
-            >
-              <Info className="h-5 w-5" /> About
-            </Link>
-            <Link
-              href="#"
-              className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
-            >
-              <Phone className="h-5 w-5" /> Contact
-            </Link>
+            <SheetClose asChild>
+              <Link
+                href="/"
+                className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
+              >
+                <Home className="h-5 w-5" /> Home
+              </Link>
+            </SheetClose>
+
+            <SheetClose asChild>
+              <Link
+                href="/AllProducts"
+                className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
+              >
+                <ShoppingBag className="h-5 w-5" /> Shop
+              </Link>
+            </SheetClose>
+
+            <SheetClose asChild>
+              <Link
+                href="/CartPage"
+                className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
+              >
+                <ShoppingCart className="h-5 w-5" /> Cart
+              </Link>
+            </SheetClose>
+
+            <SheetClose asChild>
+              <Link
+                href="#"
+                className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
+              >
+                <Package className="h-5 w-5" /> Orders
+              </Link>
+            </SheetClose>
+
+            <SheetClose asChild>
+              <Link
+                href="/FavoritesPage"
+                className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
+              >
+                <Heart className="h-5 w-5" /> Wishlist
+              </Link>
+            </SheetClose>
+
+            <SheetClose asChild>
+              <Link
+                href="/fgfgfg"
+                className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
+              >
+                <User className="h-5 w-5" /> Account
+              </Link>
+            </SheetClose>
+
+            <SheetClose asChild>
+              <Link
+                href="/About"
+                className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
+              >
+                <Info className="h-5 w-5" /> About
+              </Link>
+            </SheetClose>
+
+            <SheetClose asChild>
+              <Link
+                href="#"
+                className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
+              >
+                <Phone className="h-5 w-5" /> Contact
+              </Link>
+            </SheetClose>
           </nav>
 
           <div className="p-6 border-t flex flex-col gap-3">
@@ -125,14 +149,14 @@ export default function SideBar() {
                   <LogOut className="h-5 w-5" /> Logout
                 </>
               ) : (
-                <>
+                <SheetClose asChild>
                   <Link
                     href="/Login"
                     className="flex items-center justify-center gap-2 cursor-pointer w-full h-full"
                   >
                     <LogIn className="h-5 w-5" /> Login
                   </Link>
-                </>
+                </SheetClose>
               )}
             </Button>
           </div>
