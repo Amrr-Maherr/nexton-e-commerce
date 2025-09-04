@@ -89,7 +89,7 @@ export default function SideBar() {
               <Package className="h-5 w-5" /> Orders
             </Link>
             <Link
-              href="#"
+              href="/FavoritesPage"
               className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
             >
               <Heart className="h-5 w-5" /> Wishlist
