@@ -1,5 +1,6 @@
 "use client";
 import useAddToCart from "@/Hooks/useAddToCart";
+import useAddToWishlist from "@/Hooks/useAddToWishlist";
 import { Star, ShoppingBag, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,14 +8,14 @@ import { MoonLoader } from "react-spinners";
 
 export default function ProductCard({ product }) {
   const { addToCart, loading } = useAddToCart();
-  console.log(product, "product");
+  const { addToWishlist, loading: wishlistLoading } = useAddToWishlist();
 
   const handleAddToCart = () => {
     addToCart(product.id);
   };
 
   const handleAddToWishlist = () => {
-    console.log("Added to wishlist:", product.id);
+    addToWishlist(product.id);
   };
 
   return (
@@ -42,13 +43,17 @@ export default function ProductCard({ product }) {
           onClick={handleAddToWishlist}
           className="absolute cursor-pointer left-[15px] top-[15px] w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center"
         >
-          <Heart className="w-5 h-5 text-red-500" />
+          {wishlistLoading ? (
+            <MoonLoader color="#EF4444" size={20} />
+          ) : (
+            <Heart className="w-5 h-5 text-red-500" />
+          )}
         </div>
       </div>
 
       <div className="flex items-center justify-between px-[16px] mt-[20px]">
-        <div className="text-start font-semibold text-[#111827] text-[16px]">
-          {product.title.slice(0, 10)}..
+        <div className="text-start font-semibold truncate-2-line text-[#111827] text-[16px]">
+          {product.title}
         </div>
         <div className="text-[16px] text-[#111827]">${product.price}</div>
       </div>
