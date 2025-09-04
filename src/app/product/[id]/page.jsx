@@ -19,7 +19,7 @@ export default function ProductDetails({ params }) {
   );
   return (
     <>
-      <div className="py-10 md:py-[40px] container grid grid-cols-1 md:grid-cols-7 mx-auto">
+      <div className="py-10 md:py-[40px] container grid grid-cols-1 gap-10 md:grid-cols-7 mx-auto">
         <div className="flex items-start justify-evenly flex-wrap-reverse md:flex-nowrap col-span-7 md:col-span-4 mb-4">
           <div className="flex items-center mt-[20px] md:mt-0 flex-row flex-wrap justify-center gap-[16px]">
             {product.images?.map((img, index) => (
@@ -27,7 +27,7 @@ export default function ProductDetails({ params }) {
                 key={index}
                 src={img}
                 alt={`${product.title} ${index + 1}`}
-                className="w-[70px] md:w-[200px] h-[157.5px] object-cover rounded-lg flex-shrink-0"
+                className="w-[70px] md:w-auto h-[157.5px] object-cover rounded-lg flex-shrink-0"
               />
             ))}
           </div>
@@ -40,7 +40,7 @@ export default function ProductDetails({ params }) {
             />
           )}
         </div>
-        <div className="col-span-7 md:col-span-3 rounded-[16px] border border-solid border-[#E5E7EB] p-[33px] flex flex-col gap-6">
+        <div className="col-span-7 md:col-span-3 rounded-[16px] border border-solid border-[#E5E7EB] p-[23px] flex flex-col gap-6">
           <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
 
           <div className="flex flex-wrap gap-4 text-gray-600">
@@ -99,7 +99,7 @@ export default function ProductDetails({ params }) {
             </p>
             <p className="text-[16px] font-normal text-[#4B5563]">$0</p>
           </div>
-          <div className="flex py-4 items-center justify-between border-solid border-t border-[#E5E7EB]">
+          <div className="flex py-2 items-center justify-between border-solid border-t border-[#E5E7EB]">
             <p className="text-[16px] font-semibold text-[#111827]">Total</p>
             <p className="text-[16px] font-semibold text-[#111827]">
               ${product.price}
