@@ -52,8 +52,8 @@ export default function ProductCard({ product }) {
       </div>
 
       <div className="flex items-center justify-between px-[16px] mt-[20px]">
-        <div className="text-start font-semibold truncate-2-line text-[#111827] text-[16px]">
-          {product.title}
+        <div className="text-start font-semibold truncate-1-line text-[#111827] text-[16px]">
+          {product.title.slice(0,10)}...
         </div>
         <div className="text-[16px] text-[#111827]">${product.price}</div>
       </div>
