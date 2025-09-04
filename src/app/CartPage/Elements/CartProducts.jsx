@@ -2,8 +2,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import useCart from "@/hooks/useCart";
 import Loader from "@/components/Loader/Loader";
+import useCart from "@/Hooks/useCart";
 
 export default function CartProducts() {
   const { cart, loading, error } = useCart();
