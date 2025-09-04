@@ -19,18 +19,19 @@ export default function ProductDetails({ params }) {
   );
   return (
     <>
-      <div className="py-[40px] px-[20px] md:px-[120px] grid grid-cols-1 md:grid-cols-7 mx-auto">
+      <div className="py-10 md:py-[40px] container grid grid-cols-1 md:grid-cols-7 mx-auto">
         <div className="flex items-start justify-evenly flex-wrap-reverse md:flex-nowrap col-span-7 md:col-span-4 mb-4">
-          <div className="flex items-center mt-[20px] md:mt-0 flex-row flex-wrap justify-center md:flex-col gap-[16px]">
+          <div className="flex items-center mt-[20px] md:mt-0 flex-row flex-wrap justify-center gap-[16px]">
             {product.images?.map((img, index) => (
               <img
                 key={index}
                 src={img}
                 alt={`${product.title} ${index + 1}`}
-                className="w-[70px] md:w-[140px] h-[157.5px] object-cover rounded-lg flex-shrink-0"
+                className="w-[70px] md:w-[200px] h-[157.5px] object-cover rounded-lg flex-shrink-0"
               />
             ))}
           </div>
+
           {product.imageCover && (
             <img
               src={product.imageCover}
@@ -106,9 +107,9 @@ export default function ProductDetails({ params }) {
           </div>
         </div>
       </div>
-      <BrandsSection/>
+      <BrandsSection />
       <ProductsSection />
-      <FrequentlyAskedQuestions/>
+      <FrequentlyAskedQuestions />
     </>
   );
 }

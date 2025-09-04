@@ -6,7 +6,7 @@ import MiniCart from "../Header/Elements/MiniCart";
 export default function MobileHeader() {
     return (
       <>
-        <div className="px-[24px] py-[20px] gap-[20px] md:hidden block flex items-center justify-between">
+        <div className="container py-[20px] gap-[20px] md:hidden block flex items-center justify-between">
           <Logo />
           <SearchInput />
           <div className="flex items-center justify-center flex-row-reverse gap-1">
