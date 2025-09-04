@@ -34,11 +34,13 @@ export default function CartSidebar() {
   if (loading) return <Loader />;
   if (error) return <p>Error loading cart</p>;
 
-  const total = cart?.data?.totalCartPrice || 0;
+  const totalPrice = cart?.data?.totalCartPrice || 0;
 
   return (
     <div className="space-y-6">
-      {/* Payment Method */}
+      <div className="flex justify-start mt-4 p-4 border rounded-lg bg-gray-50 font-semibold text-lg">
+        Total: {totalPrice} EGP
+      </div>
       <div className="border rounded-lg shadow-sm bg-white p-4">
         <h3 className="text-lg font-semibold mb-4">Payment Method</h3>
         <div className="space-y-3">
@@ -66,7 +68,7 @@ export default function CartSidebar() {
           <Button type="submit" className="w-full">
             Confirm Order
           </Button>
-          {payment === "online" && <PayPalButton amount={total} />}
+          {payment === "online" && <PayPalButton amount={totalPrice} />}
         </div>
       </div>
       {payment === "cash" && (
