@@ -8,6 +8,7 @@ import Link from "next/link";
 
 export default function CartProducts() {
   const { cart, loading, error } = useCart();
+console.log(cart,"cart");
 
   return (
     <div className="md:col-span-2 space-y-4 pr-3">

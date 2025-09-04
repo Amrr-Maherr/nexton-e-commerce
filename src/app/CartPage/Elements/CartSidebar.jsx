@@ -4,6 +4,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import useCart from "@/Hooks/useCart";
+import PayPalButton from "@/Payment/PayPalButton";
+import Loader from "@/components/Loader/Loader";
 
 export default function CartSidebar() {
   const [customer, setCustomer] = useState({
@@ -25,6 +28,13 @@ export default function CartSidebar() {
     e.preventDefault();
     console.log("Submitting order:", { ...customer, payment });
   };
+
+  const { cart, loading, error } = useCart();
+
+  if (loading) return <Loader />;
+  if (error) return <p>Error loading cart</p>;
+
+  const total = cart?.data?.totalCartPrice || 0;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -143,9 +153,13 @@ export default function CartSidebar() {
             />
             <Label>Pay Online (Visa / Mastercard)</Label>
           </div>
+
           <Button type="submit" className="w-full">
             Confirm Order
           </Button>
+
+          {/* زر PayPal يظهر فقط لو المستخدم اختر الدفع أونلاين */}
+          {payment === "online" && <PayPalButton amount={total} />}
         </div>
       </div>
     </form>
