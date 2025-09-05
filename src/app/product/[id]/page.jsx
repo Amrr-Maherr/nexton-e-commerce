@@ -41,7 +41,7 @@ export default function ProductDetails({ params }) {
           )}
         </div>
         <div className="col-span-7 md:col-span-3 rounded-[16px] border border-solid border-[#E5E7EB] p-[23px] flex flex-col gap-6">
-          <h1 className="text-3xl font-bold mb-2">{product.title}</h1>
+          <h1 className="text-xl md:text-3xl font-bold mb-2">{product.title}</h1>
 
           <div className="flex flex-wrap gap-4 text-gray-600">
             <span>

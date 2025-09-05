@@ -34,5 +34,5 @@ export default function useCart() {
     fetchCart();
   }, []);
 
-  return { cart, loading, error, refetch: fetchCart };
+  return { cart, loading, error,fetchCart };
 }

@@ -16,7 +16,6 @@ export default function ProductQuantity() {
 
       <input
         type="number"
-        defaultValue={1}
         onChange={(e) => setQuantityValue(Number(e.target.value))}
         value={QuantityValue}
         className="h-8 w-10 md:h-9 md:w-14 rounded-xl border border-transparent text-center text-sm md:text-base outline-none"

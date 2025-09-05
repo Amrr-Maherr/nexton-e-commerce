@@ -19,7 +19,7 @@ export default function MiniCart() {
 
   const products = cart?.data?.products || [];
 
-  const TotalPrice = cart?.data?.totalCartPrice || 0;
+  const TotalPrice = cart?.data?.totalCartPrice;
 
 
 
@@ -49,8 +49,6 @@ export default function MiniCart() {
         ) : (
           <>
             <div className="flex-1 mt-4 overflow-y-auto">
-              {error && <p className="text-red-500 text-center">{error}</p>}
-
               {products.length > 0 ? (
                 <div className="flex flex-col gap-4">
                   {products.map((item) => (
