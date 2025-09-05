@@ -5,6 +5,7 @@ import Footer from "@/components/Footer/Index";
 import WhatsappButton from "@/components/WhatsappButton/WhatsappButton";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import { Toaster } from "@/components/ui/sonner";
+import { ReduxProvider } from "@/ReduxProvider/ReduxProvider";
 
 const roboto = Roboto({
   variable: "--font-roboto",
@@ -31,7 +32,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${roboto.variable} ${robotoMono.variable} antialiased`}>
         <Index />
-        {children}
+        <ReduxProvider>{children}</ReduxProvider>
         <WhatsappButton />
         <ScrollToTop />
         <Toaster />
