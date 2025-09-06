@@ -41,21 +41,21 @@ The project can be integrated with a ready-made **API collection** available on 
 
 | Homepage | Product Page | Cart Page |
 |----------|-------------|-----------|
-| ![Homepage](https://via.placeholder.com/350x200?text=Homepage) | ![Product](https://via.placeholder.com/350x200?text=Product+Page) | ![Cart](https://via.placeholder.com/350x200?text=Cart+Page) |
+| ![Homepage](./public/ScreenShots/Login.png) | ![Product](./public/ScreenShots/Product.png) | ![Cart](./public/ScreenShots/Cart.png) |
 
 **Other Key Screens:**  
 
 - Featured Products Carousel  
-  ![Featured](https://via.placeholder.com/350x200?text=Featured+Products)  
+  ![Featured](./public/ScreenShots/Login.png)  
 
 - Product Filters / Categories  
-  ![Filters](https://via.placeholder.com/350x200?text=Product+Filters)  
+  ![Filters](./public/ScreenShots/Filters.png)  
 
 - Checkout / Payment Pages  
-  ![Checkout](https://via.placeholder.com/350x200?text=Checkout+Page)  
+  ![Checkout](./public/ScreenShots/Checkout.png)  
 
 - Login / Signup Pages  
-  ![Login](https://via.placeholder.com/350x200?text=Login+Page)  
+  ![Login](./public/ScreenShots/Login.png)  
 
 *Replace placeholders with actual screenshots.*
 
