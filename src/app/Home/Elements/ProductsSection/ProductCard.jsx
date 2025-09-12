@@ -13,15 +13,21 @@ export default function ProductCard({ product }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [wishlistLoading, setWishlistLoading] = useState(false);
+
+  const cart = useSelector((state) => state.cart.items);
   const wishlistItems = useSelector((state) => state.wishlist.items);
 
   const handleAddToCart = async () => {
     try {
       setLoading(true);
-      await dispatch(addProductToCart(product.id)).unwrap();
-      toast.success("Added to cart 🎉");
+      const result = await dispatch(addProductToCart(product.id));
+      if (result.payload?.message) {
+        toast.success(result.payload.message);
+      } else {
+        toast.success("Product added to cart!");
+      }
     } catch (error) {
-      toast.error(error);
+      toast.error(error.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -30,10 +36,14 @@ export default function ProductCard({ product }) {
   const handleAddToWishlist = async () => {
     try {
       setWishlistLoading(true);
-      await dispatch(addProductToWishlist(product.id)).unwrap();
-      toast.success("Added to wishlist 💖");
+      const result = await dispatch(addProductToWishlist(product.id));
+      if (result.payload?.message) {
+        toast.success(result.payload.message);
+      } else {
+        toast.success("Product added to wishlist!");
+      }
     } catch (error) {
-      toast.error(error.message || error.statusMsg || "Something went wrong");
+      toast.error(error.message || "Something went wrong");
     } finally {
       setWishlistLoading(false);
     }
@@ -50,6 +60,8 @@ export default function ProductCard({ product }) {
             className="object-cover rounded-lg"
           />
         </Link>
+
+        {/* Add to Cart Button */}
         <div
           onClick={handleAddToCart}
           className="absolute cursor-pointer right-[15px] top-[15px] w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center"
@@ -60,6 +72,8 @@ export default function ProductCard({ product }) {
             <ShoppingBag className="w-5 h-5" />
           )}
         </div>
+
+        {/* Add to Wishlist Button */}
         <div
           onClick={handleAddToWishlist}
           className="absolute cursor-pointer left-[15px] top-[15px] w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center"
@@ -72,9 +86,12 @@ export default function ProductCard({ product }) {
         </div>
       </div>
 
+      {/* Product Info */}
       <div className="flex items-center justify-between px-[16px] mt-[20px]">
         <div className="text-start font-semibold truncate-1-line text-[#111827] text-[16px]">
-          {product.title.slice(0, 10)}...
+          {product.title.length > 10
+            ? `${product.title.slice(0, 10)}...`
+            : product.title}
         </div>
         <div className="text-[16px] text-[#111827]">${product.price}</div>
       </div>
