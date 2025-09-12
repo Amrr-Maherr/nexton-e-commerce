@@ -9,6 +9,7 @@ import { addProductToWishlist } from "../../../../Redux/WishlistSlice";
 import { useState } from "react";
 import { toast } from "sonner";
 import { FetchCart } from "@/Redux/ShowCartSlice";
+import { FetchFavorites } from "@/Redux/FetchFavorites";
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ export default function ProductCard({ product }) {
       toast.error(error.message || "Something went wrong");
     } finally {
       setWishlistLoading(false);
+      dispatch(FetchFavorites())
     }
   };
 
