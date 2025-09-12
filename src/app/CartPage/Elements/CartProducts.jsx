@@ -2,10 +2,27 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Loader from "@/components/Loader/Loader";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { updateQuantity } from "@/Redux/CartQuantitySlice";
+import { FetchCart } from "@/Redux/ShowCartSlice";
 
-export default function CartProducts({products}) {
+export default function CartProducts({ products }) {
+  const dispatch = useDispatch();
+
+  const handleIncrement = (productId, currentCount) => {
+    dispatch(updateQuantity({ productId, count: currentCount + 1 })).then(() =>
+      dispatch(FetchCart())
+    );
+  };
+
+  const handleDecrement = (productId, currentCount) => {
+    if (currentCount <= 1) return;
+    dispatch(updateQuantity({ productId, count: currentCount - 1 })).then(() =>
+      dispatch(FetchCart())
+    );
+  };
+
   return (
     <div className="md:col-span-2 space-y-4 pr-3">
       <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
@@ -30,7 +47,27 @@ export default function CartProducts({products}) {
               </Link>
               <div className="flex-1">
                 <h3 className="font-medium">{product.product.title}</h3>
-                <p className="text-gray-500">Quantity: {product.count}</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <button
+                    type="button"
+                    className="px-2 py-1 border rounded bg-gray-100 hover:bg-gray-200 cursor-pointer"
+                    onClick={() =>
+                      handleDecrement(product.product.id, product.count)
+                    }
+                  >
+                    -
+                  </button>
+                  <span className="px-2">{product.count}</span>
+                  <button
+                    type="button"
+                    className="px-2 py-1 border rounded bg-gray-100 hover:bg-gray-200 cursor-pointer"
+                    onClick={() =>
+                      handleIncrement(product.product.id, product.count)
+                    }
+                  >
+                    +
+                  </button>
+                </div>
               </div>
               <p className="font-semibold">
                 {product.price * product.count} EGP
