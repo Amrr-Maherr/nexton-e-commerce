@@ -4,11 +4,29 @@ import Slider from "@/components/Slider/Slider";
 import useFetchProducts from "@/Hooks/useFetchProducts";
 import ProductCard from "./ProductCard";
 import Loader from "@/components/Loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchProducts } from "@/Redux/ProductsSlice";
 
 export default function ProductsSection({ title, spanTitle }) {
-  const { data, loading, error } = useFetchProducts();
+  const Dispatch = useDispatch()
+  const products = useSelector((state) => state.products.products);
+  const error = useSelector((state) => state.products.error);
+  const loading = useSelector((state) => state.products.loading);
+  useEffect(() => {
+    Dispatch(fetchProducts());
+  },[])
+  console.log(products.products,"pro");
+  
   if (loading) {
     return <Loader loading={loading} />;
+  }
+  if (error) {
+    return (
+      <>
+        <p>{error}</p>
+      </>
+    )
   }
   return (
     <>
@@ -16,8 +34,8 @@ export default function ProductsSection({ title, spanTitle }) {
         <SectionTitle title={title} spanTitle={spanTitle} />
         <div className="flex items-center justify-center ">
           <Slider slidesPerView={4} spaceBetween={20} slidesPerViewMobile={2}>
-            {Array.isArray(data) ? (
-              data.map((product) => (
+            {Array.isArray(products) ? (
+              products.map((product) => (
                 <ProductCard product={product} key={product.id} />
               ))
             ) : (
