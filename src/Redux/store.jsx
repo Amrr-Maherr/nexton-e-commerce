@@ -5,8 +5,8 @@ import BrandsSlice from "../Redux/BrandsSlice";
 import ProductDetailsSlice from "../Redux/ProductDetailsSlice";
 import CartSlice from "../Redux/CartSlice";
 import WishlistSlice from "../Redux/WishlistSlice";
-import LoginSlice from "../Redux/LoginSlice";
-import RegisterSlice from "../Redux/RegisterSlice";
+import LoginSlice from "../Redux/loginUser";
+import RegisterSlice from "../Redux/registerUser";
 
 export const store = configureStore({
   reducer: {
