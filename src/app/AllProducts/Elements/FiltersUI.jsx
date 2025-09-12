@@ -15,8 +15,8 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 
 export default function FiltersUI({ setFilteredProducts, setLoading }) {
-  const { categories = [] } = useFetchCategories();
-  const { brands = [] } = useFetchBrands();
+  // const { categories = [] } = useFetchCategories();
+  // const { brands = [] } = useFetchBrands();
 
   const [filters, setFilters] = useState({
     keyword: "",
