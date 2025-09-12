@@ -1,7 +1,6 @@
 "use client";
 import SectionTitle from "@/components/SectionTitle/SectionTitle";
 import Slider from "@/components/Slider/Slider";
-import useFetchProducts from "@/Hooks/useFetchProducts";
 import ProductCard from "./ProductCard";
 import Loader from "@/components/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";

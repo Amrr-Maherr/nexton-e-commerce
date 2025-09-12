@@ -19,12 +19,12 @@ const robotoMono = Roboto_Mono({
 
 export const metadata = {
   title: "NEXTON",
-  description:
-    "NEXTON is your ultimate online shopping destination, offering a wide range of products with fast delivery, secure payments, and an intuitive shopping experience.",
+  description: "NEXTON is your ultimate online shopping destination...",
   icons: {
-    icon: "/online-shopping.png",
+    icon: "/icons/online-shopping.png",
   },
 };
+
 
 
 export default function RootLayout({ children }) {
