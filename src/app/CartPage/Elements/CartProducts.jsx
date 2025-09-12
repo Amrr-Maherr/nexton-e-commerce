@@ -67,6 +67,13 @@ export default function CartProducts({ products }) {
                   >
                     +
                   </button>
+                  {/* زر لمسح المنتج كـ UI فقط */}
+                  <button
+                    type="button"
+                    className="ml-4 px-2 py-1 border rounded bg-red-100 hover:bg-red-200 text-red-600 cursor-pointer"
+                  >
+                    Remove
+                  </button>
                 </div>
               </div>
               <p className="font-semibold">
