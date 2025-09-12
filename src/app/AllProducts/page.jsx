@@ -7,7 +7,6 @@
 export default function AllProducts() {
   // const [filteredProducts, setFilteredProducts] = useState([]);
   // const [loading, setLoading] = useState(false);
-
   return (
     <>
       <section>

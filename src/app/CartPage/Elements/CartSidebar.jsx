@@ -4,11 +4,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import useCart from "@/Hooks/useCart";
 import PayPalButton from "@/Payment/PayPalButton";
 import Loader from "@/components/Loader/Loader";
-
-export default function CartSidebar() {
+export default function CartSidebar({ totalPrice }) {
   const [customer, setCustomer] = useState({
     firstName: "",
     lastName: "",
@@ -23,19 +21,14 @@ export default function CartSidebar() {
   const handleChange = (e) => {
     setCustomer({ ...customer, [e.target.name]: e.target.value });
   };
-
+const selectPayment = (method) => {
+  setPayment(method);
+};
+;
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Submitting order:", { ...customer, payment });
   };
-
-  const { cart, loading, error } = useCart();
-
-  if (loading) return <Loader />;
-  if (error) return <p>Error loading cart</p>;
-
-  const totalPrice = cart?.data?.totalCartPrice || 0;
-
   return (
     <div className="space-y-6">
       <div className="flex justify-start mt-4 p-4 border rounded-lg bg-gray-50 font-semibold text-lg">
@@ -50,7 +43,7 @@ export default function CartSidebar() {
               name="payment"
               value="cash"
               checked={payment === "cash"}
-              onChange={() => setPayment("cash")}
+              onChange={() => selectPayment("cash")}
             />
             <Label>Cash on Delivery</Label>
           </div>
@@ -60,7 +53,7 @@ export default function CartSidebar() {
               name="payment"
               value="online"
               checked={payment === "online"}
-              onChange={() => setPayment("online")}
+              onChange={() => selectPayment("online")}
             />
             <Label>Pay Online (Visa / Mastercard)</Label>
           </div>

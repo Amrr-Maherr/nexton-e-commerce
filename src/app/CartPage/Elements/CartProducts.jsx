@@ -3,21 +3,15 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Loader from "@/components/Loader/Loader";
-import useCart from "@/Hooks/useCart";
 import Link from "next/link";
 
-export default function CartProducts() {
-  const { cart, loading, error } = useCart();
+export default function CartProducts({products}) {
   return (
     <div className="md:col-span-2 space-y-4 pr-3">
       <h2 className="text-2xl font-semibold mb-4">Your Cart</h2>
-
-      {loading && <Loader />}
-      {error && <p className="text-red-500">{error}</p>}
-
-      {cart?.data?.products?.length > 0 ? (
+      {products?.length > 0 ? (
         <>
-          {cart.data.products.map((product) => (
+          {products.map((product) => (
             <motion.div
               key={product._id}
               initial={{ opacity: 0, y: 20 }}
