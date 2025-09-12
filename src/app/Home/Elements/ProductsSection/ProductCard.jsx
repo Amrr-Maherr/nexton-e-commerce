@@ -1,21 +1,42 @@
 "use client";
-import useAddToCart from "@/Hooks/useAddToCart";
-import useAddToWishlist from "@/Hooks/useAddToWishlist";
 import { Star, ShoppingBag, Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MoonLoader } from "react-spinners";
+import { useDispatch, useSelector } from "react-redux";
+import { addProductToCart } from "../../../../Redux/CartSlice";
+import { addProductToWishlist } from "../../../../Redux/WishlistSlice";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function ProductCard({ product }) {
-  const { addToCart, loading } = useAddToCart();
-  const { addToWishlist, loading: wishlistLoading } = useAddToWishlist();
+  const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const [wishlistLoading, setWishlistLoading] = useState(false);
+  const wishlistItems = useSelector((state) => state.wishlist.items);
 
-  const handleAddToCart = () => {
-    addToCart(product.id);
+  const handleAddToCart = async () => {
+    try {
+      setLoading(true);
+      await dispatch(addProductToCart(product.id)).unwrap();
+      toast.success("Added to cart 🎉");
+    } catch (error) {
+      toast.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleAddToWishlist = () => {
-    addToWishlist(product.id);
+  const handleAddToWishlist = async () => {
+    try {
+      setWishlistLoading(true);
+      await dispatch(addProductToWishlist(product.id)).unwrap();
+      toast.success("Added to wishlist 💖");
+    } catch (error) {
+      toast.error(error.message || error.statusMsg || "Something went wrong");
+    } finally {
+      setWishlistLoading(false);
+    }
   };
 
   return (
@@ -53,7 +74,7 @@ export default function ProductCard({ product }) {
 
       <div className="flex items-center justify-between px-[16px] mt-[20px]">
         <div className="text-start font-semibold truncate-1-line text-[#111827] text-[16px]">
-          {product.title.slice(0,10)}...
+          {product.title.slice(0, 10)}...
         </div>
         <div className="text-[16px] text-[#111827]">${product.price}</div>
       </div>
