@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import useFetchBrands from "@/Hooks/useFetchBrands";
+// import useFetchBrands from "@/Hooks/useFetchBrands";
 // import useFetchCategories from "@/Hooks/useFetchCategories";
 import useFilteredProducts from "@/Hooks/useFilteredProducts";
 import {
