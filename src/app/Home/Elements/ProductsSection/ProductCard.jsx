@@ -8,6 +8,7 @@ import { addProductToCart } from "../../../../Redux/CartSlice";
 import { addProductToWishlist } from "../../../../Redux/WishlistSlice";
 import { useState } from "react";
 import { toast } from "sonner";
+import { FetchCart } from "@/Redux/ShowCartSlice";
 
 export default function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ export default function ProductCard({ product }) {
       toast.error(error.message || "Something went wrong");
     } finally {
       setLoading(false);
+      dispatch(FetchCart());
     }
   };
 

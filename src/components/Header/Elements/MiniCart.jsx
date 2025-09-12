@@ -9,19 +9,23 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart } from "lucide-react";
-import useCart from "@/Hooks/useCart";
 import Loader from "@/components/Loader/Loader";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { FetchCart } from "@/Redux/ShowCartSlice";
 
 export default function MiniCart() {
-  const { cart, loading, error } = useCart();
-  
+  const cartState = useSelector((state) => state.getCart);
+  const dispatch = useDispatch();
 
-  const products = cart?.data?.products || [];
+  useEffect(() => {
+    dispatch(FetchCart());
+  }, [dispatch]);
 
-  const TotalPrice = cart?.data?.totalCartPrice;
-
-
+  const products = cartState.data?.data?.products || [];
+  const totalPrice = cartState.data?.data?.totalCartPrice || 0;
+  const loading = cartState.loading;
 
   return (
     <Sheet>
@@ -44,6 +48,7 @@ export default function MiniCart() {
             Your Cart
           </SheetTitle>
         </SheetHeader>
+
         {loading ? (
           <Loader />
         ) : (
@@ -88,18 +93,19 @@ export default function MiniCart() {
                 </div>
               )}
             </div>
-            {TotalPrice && (
-              <div className="flex justify-between font-semibold text-base sm:text-lg pt-2 border-t mt-2">
-                <span>Total:</span>
-                <span>${TotalPrice}</span>
-              </div>
-            )}
+
             {products.length > 0 && (
-              <Link href="/CartPage" className="mt-4 w-full">
-                <Button className="w-full py-3 bg-black rounded-full cursor-pointer text-white font-semibold">
-                  Go to Cart
-                </Button>
-              </Link>
+              <>
+                <div className="flex justify-between font-semibold text-base sm:text-lg pt-2 border-t mt-2">
+                  <span>Total:</span>
+                  <span>${totalPrice}</span>
+                </div>
+                <Link href="/CartPage" className="mt-4 w-full">
+                  <Button className="w-full py-3 bg-black rounded-full cursor-pointer text-white font-semibold">
+                    Go to Cart
+                  </Button>
+                </Link>
+              </>
             )}
           </>
         )}
