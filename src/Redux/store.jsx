@@ -8,6 +8,7 @@ import WishlistSlice from "../Redux/WishlistSlice";
 import LoginSlice from "../Redux/loginUser";
 import RegisterSlice from "../Redux/registerUser";
 import GetCartSlice from "../Redux/ShowCartSlice";
+import FavoritesSlice from "../Redux/FetchFavorites";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     login: LoginSlice,
     register: RegisterSlice,
     getCart: GetCartSlice,
+    getFav: FavoritesSlice,
   },
 });
