@@ -95,7 +95,7 @@ export default function MiniCart() {
               </div>
             )}
             {products.length > 0 && (
-              <Link href="/cart" className="mt-4 w-full">
+              <Link href="/CartPage" className="mt-4 w-full">
                 <Button className="w-full py-3 bg-black rounded-full cursor-pointer text-white font-semibold">
                   Go to Cart
                 </Button>
