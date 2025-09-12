@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import useSearch from "@/Hooks/useSearch";
 import { Search } from "lucide-react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
@@ -9,7 +8,6 @@ import Image from "next/image";
 
 export default function SearchInput() {
   const [query, setQuery] = useState("");
-  const { searchResponse, loading } = useSearch(query);
 // console.log(searchResponse,"es");
 
   return (

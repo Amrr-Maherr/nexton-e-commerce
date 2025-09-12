@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 // import useFetchBrands from "@/Hooks/useFetchBrands";
 // import useFetchCategories from "@/Hooks/useFetchCategories";
-import useFilteredProducts from "@/Hooks/useFilteredProducts";
 import {
   Select,
   SelectContent,
@@ -27,7 +26,6 @@ export default function FiltersUI({ setFilteredProducts, setLoading }) {
   });
 
   const [appliedFilters, setAppliedFilters] = useState({});
-  const { products, loading, error } = useFilteredProducts(appliedFilters);
   useEffect(() => {
     if (setFilteredProducts) setFilteredProducts(products);
     if (setLoading) setLoading(loading);
