@@ -5,10 +5,16 @@ import { Search } from "lucide-react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
+import { useSelector } from "react-redux";
 
 export default function SearchInput() {
   const [query, setQuery] = useState("");
-// console.log(searchResponse,"es");
+  const products = useSelector((state) => state.products.products);
+  const loading = useSelector((state) => state.products.loading);
+
+  const searchResponse = products?.filter((item) =>
+      item.title.toLowerCase().includes(query.toLowerCase())
+  );
 
   return (
     <div className="w-full max-w-[600px] relative">
@@ -43,8 +49,8 @@ export default function SearchInput() {
                 <Image
                   src={item.imageCover}
                   alt={item.title}
-                  width={100}
-                  height={100}
+                  width={50}
+                  height={50}
                   quality={100}
                   className="object-cover rounded ml-2"
                 />
