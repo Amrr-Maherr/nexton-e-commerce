@@ -12,10 +12,19 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchBrands } from "@/Redux/BrandsSlice";
+import { FetchCategory } from "@/Redux/CategorySlice";
 
-export default function FiltersUI({ setFilteredProducts, setLoading }) {
-  // const { categories = [] } = useFetchCategories();
-  // const { brands = [] } = useFetchBrands();
+export default function FiltersUI() {
+  const dispatch = useDispatch()
+  const category = useSelector((state) => state.category.data);
+  const Brands = useSelector((state) => state.brands.data);
+
+  useEffect(() => {
+    dispatch(FetchBrands())
+    dispatch(FetchCategory())
+  }, []);
 
   const [filters, setFilters] = useState({
     keyword: "",
@@ -24,12 +33,6 @@ export default function FiltersUI({ setFilteredProducts, setLoading }) {
     priceGte: "",
     priceLte: "",
   });
-
-  const [appliedFilters, setAppliedFilters] = useState({});
-  useEffect(() => {
-    if (setFilteredProducts) setFilteredProducts(products);
-    if (setLoading) setLoading(loading);
-  }, [products, loading, setFilteredProducts, setLoading]);
 
   const handleChange = (field, value) => {
     setFilters((prev) => ({ ...prev, [field]: value }));
@@ -62,7 +65,7 @@ export default function FiltersUI({ setFilteredProducts, setLoading }) {
           <SelectValue placeholder="Categories" />
         </SelectTrigger>
         <SelectContent>
-          {categories.map((cat) => (
+          {category?.map((cat) => (
             <SelectItem value={cat._id} key={cat._id}>
               {cat.name}
             </SelectItem>
@@ -91,7 +94,7 @@ export default function FiltersUI({ setFilteredProducts, setLoading }) {
           <SelectValue placeholder="Brands" />
         </SelectTrigger>
         <SelectContent>
-          {brands.map((b) => (
+          {Brands?.map((b) => (
             <SelectItem value={b._id} key={b._id}>
               {b.name}
             </SelectItem>
@@ -128,20 +131,18 @@ export default function FiltersUI({ setFilteredProducts, setLoading }) {
           className="flex-1 rounded-full"
           type="button"
           onClick={handleReset}
-          disabled={loading}
+          // disabled={loading}
         >
           Reset
         </Button>
         <Button
           type="submit"
           className="flex-1 rounded-full"
-          disabled={loading}
+          // disabled={loading}
         >
           Apply
         </Button>
       </div>
-
-      {error && <p className="mt-4 text-red-500">{error}</p>}
     </form>
   );
 }
