@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
@@ -13,8 +13,10 @@ export default function SearchInput() {
   const loading = useSelector((state) => state.products.loading);
 
   const searchResponse = products?.filter((item) =>
-      item.title.toLowerCase().includes(query.toLowerCase())
+    item.title.toLowerCase().includes(query.toLowerCase())
   );
+
+  const clearQuery = () => setQuery("");
 
   return (
     <div className="w-full max-w-[600px] relative">
@@ -27,8 +29,15 @@ export default function SearchInput() {
           placeholder="Search in products..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="pl-10"
+          className="pl-10 pr-10"
         />
+        {query && (
+          <X
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
+            size={20}
+            onClick={clearQuery}
+          />
+        )}
       </div>
 
       {query && (
