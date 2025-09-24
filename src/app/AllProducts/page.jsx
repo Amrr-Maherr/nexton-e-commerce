@@ -8,27 +8,6 @@ import ProductCard from "../Home/Elements/ProductsSection/ProductCard";
 export default function AllProducts() {
   const products = useSelector((state) => state.filters.data);
   const loading = useSelector((state) => state.filters.loading);
-    const Dispatch = useDispatch();
-    useEffect(() => {
-      Dispatch(
-        FetchFilteredProducts({
-          limit: 2,
-          sort: "-price",
-          fields: "title,price",
-          "price[gte]": 100,
-          page: 1,
-          keyword: "new",
-          brand: "6212b6b488f2cee15c5db3c8",
-          "price[lte]": 13,
-          "category[in]": [
-            "6212b67488f2cee15c5db3ba",
-            "61f3157c6bdf4c518f9bbcb9",
-          ],
-        })
-      );
-    }, [Dispatch]);
-  console.log(products,"productsss");
-  
   return (
     <>
       <section>

@@ -1,91 +1,100 @@
-"use client";
 import { useState, useEffect } from "react";
-// import useFetchBrands from "@/Hooks/useFetchBrands";
-// import useFetchCategories from "@/Hooks/useFetchCategories";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Select,
+  SelectTrigger,
   SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { useDispatch, useSelector } from "react-redux";
-import { FetchBrands } from "@/Redux/BrandsSlice";
-import { FetchCategory } from "@/Redux/CategorySlice";
+import { FetchFilteredProducts } from "@/Redux/FilterSlice";
 
-export default function FiltersUI() {
-  const dispatch = useDispatch()
-  const category = useSelector((state) => state.category.data);
-  const Brands = useSelector((state) => state.brands.data);
-
+export default function FiltersPanel() {
+  const dispatch = useDispatch();
+  const brands = useSelector((state) => state.brands.data);
+  const categories = useSelector((state) => state.category.data);
+  console.log(categories, "categories");
+  
   useEffect(() => {
-    dispatch(FetchBrands())
-    dispatch(FetchCategory())
-  }, []);
+    dispatch(
+      FetchFilteredProducts({
+        sort: "-price",
+        fields: "title,price",
+        "price[gte]": 100,
+        keyword: "new",
+        brand: "6212b6b488f2cee15c5db3c8",
+        "price[lte]": 13,
+        "category[in]": [
+          "6212b67488f2cee15c5db3ba",
+          "61f3157c6bdf4c518f9bbcb9",
+        ],
+      })
+    );
+  }, [dispatch]);
 
   const [filters, setFilters] = useState({
+    sort: "-price",
+    "price[gte]": "",
+    "price[lte]": "",
     keyword: "",
     brand: "",
-    category: "",
-    priceGte: "",
-    priceLte: "",
+    "category[in]": "",
   });
 
-  const handleChange = (field, value) => {
-    setFilters((prev) => ({ ...prev, [field]: value }));
+  const handleChange = (key, value) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
   const handleReset = () => {
     setFilters({
+      sort: "-price",
+      "price[gte]": "",
+      "price[lte]": "",
       keyword: "",
       brand: "",
-      category: "",
-      priceGte: "",
-      priceLte: "",
+      "category[in]": "",
     });
-    setAppliedFilters({});
   };
 
-  const handleApply = (e) => {
-    e.preventDefault();
-    setAppliedFilters({ ...filters });
+  const handleApply = () => {
+    const payload = {
+      filters
+    };
+    dispatch(FetchFilteredProducts(payload));
   };
-
   return (
-    <form className="grid gap-4" onSubmit={handleApply}>
+    <div className="grid gap-4">
+      {/* Search / Keyword */}
+      <label className="font-medium">Search in products...</label>
+      <Input
+        type="text"
+        placeholder="Key word"
+        value={filters.keyword}
+        onChange={(e) => handleChange("keyword", e.target.value)}
+      />
+
       {/* Categories */}
+      <label className="font-medium">Categories</label>
       <Select
-        value={filters.category}
-        onValueChange={(val) => handleChange("category", val)}
+        value={filters["category[in]"]}
+        onValueChange={(val) => handleChange("category[in]", val)}
       >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Categories" />
         </SelectTrigger>
         <SelectContent>
-          {category?.map((cat) => (
-            <SelectItem value={cat._id} key={cat._id}>
-              {cat.name}
+          {categories.map((c) => (
+            <SelectItem value={c._id} key={c._id}>
+              {c.name}
             </SelectItem>
           ))}
         </SelectContent>
       </Select>
 
-      {/* Keyword */}
-      <div className="grid w-full items-center gap-3">
-        <Label htmlFor="key">Key words</Label>
-        <Input
-          type="text"
-          id="key"
-          placeholder="Key word"
-          value={filters.keyword}
-          onChange={(e) => handleChange("keyword", e.target.value)}
-        />
-      </div>
-
       {/* Brands */}
+      <label className="font-medium">Brands</label>
       <Select
         value={filters.brand}
         onValueChange={(val) => handleChange("brand", val)}
@@ -94,7 +103,7 @@ export default function FiltersUI() {
           <SelectValue placeholder="Brands" />
         </SelectTrigger>
         <SelectContent>
-          {Brands?.map((b) => (
+          {brands.map((b) => (
             <SelectItem value={b._id} key={b._id}>
               {b.name}
             </SelectItem>
@@ -102,47 +111,56 @@ export default function FiltersUI() {
         </SelectContent>
       </Select>
 
-      {/* Price */}
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <Label className="mb-3">Price (Min)</Label>
+      {/* Min Price */}
+      <div className="grid grid-cols-2 gap-4">
+        {/* Min Price */}
+        <div className="flex flex-col">
+          <label className="font-medium mb-1">Price (Min)</label>
           <Input
             type="number"
             placeholder="1"
-            value={filters.priceGte}
-            onChange={(e) => handleChange("priceGte", e.target.value)}
+            value={filters["price[gte]"]}
+            onChange={(e) => handleChange("price[gte]", e.target.value)}
           />
         </div>
-        <div>
-          <Label className="mb-3">Price (Max)</Label>
+
+        {/* Max Price */}
+        <div className="flex flex-col">
+          <label className="font-medium mb-1">Price (Max)</label>
           <Input
             type="number"
             placeholder="1000"
-            value={filters.priceLte}
-            onChange={(e) => handleChange("priceLte", e.target.value)}
+            value={filters["price[lte]"]}
+            onChange={(e) => handleChange("price[lte]", e.target.value)}
           />
         </div>
       </div>
 
+      {/* Sort */}
+      <label className="font-medium">Sort</label>
+      <Select
+        value={filters.sort}
+        onValueChange={(val) => handleChange("sort", val)}
+      >
+        <SelectTrigger className="w-full">
+          <SelectValue placeholder="Sort" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="-price">Price Desc</SelectItem>
+          <SelectItem value="price">Price Asc</SelectItem>
+          <SelectItem value="-createdAt">Newest</SelectItem>
+        </SelectContent>
+      </Select>
+
       {/* Buttons */}
-      <div className="flex justify-between gap-2 mt-4">
-        <Button
-          variant="outline"
-          className="flex-1 rounded-full"
-          type="button"
-          onClick={handleReset}
-          // disabled={loading}
-        >
+      <div className="flex gap-2 mt-4">
+        <Button onClick={handleReset} variant="outline" className="flex-1">
           Reset
         </Button>
-        <Button
-          type="submit"
-          className="flex-1 rounded-full"
-          // disabled={loading}
-        >
+        <Button onClick={handleApply} className="flex-1">
           Apply
         </Button>
       </div>
-    </form>
+    </div>
   );
 }
