@@ -6,6 +6,8 @@ import BrandsSection from "@/app/Home/Elements/BrandsSection/BrandsSection";
 import FrequentlyAskedQuestions from "@/components/FrequentlyQskedQuestions/FrequentlyQskedQuestions";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchProductDetails } from "../../../Redux/ProductDetailsSlice";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 export default function ProductDetails({ params }) {
    const unwrappedParams = React.use(params);
@@ -35,12 +37,14 @@ console.log(product, "data");
           <div className="flex items-start justify-evenly flex-wrap-reverse md:flex-nowrap col-span-7 md:col-span-4 mb-4">
             <div className="flex items-center mt-[20px] md:mt-0 flex-row flex-wrap justify-center gap-[16px]">
               {product.images?.map((img, index) => (
-                <img
-                  key={index}
-                  src={img}
-                  alt={`${product.title} ${index + 1}`}
-                  className="w-[70px] md:w-auto h-[157.5px] object-cover rounded-lg flex-shrink-0"
-                />
+                <Zoom key={index}>
+                  <img
+                    key={index}
+                    src={img}
+                    alt={`${product.title} ${index + 1}`}
+                    className="w-[70px] md:w-auto h-[157.5px] object-cover rounded-lg flex-shrink-0"
+                  />
+                </Zoom>
               ))}
             </div>
 
