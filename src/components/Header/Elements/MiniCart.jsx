@@ -29,13 +29,18 @@ export default function MiniCart() {
 
   return (
     <Sheet>
-      <SheetTrigger asChild>
+      <SheetTrigger className="relative" asChild>
         <Button
           variant="outline shadow-none"
           size="icon"
           className="shadow-none cursor-pointer"
         >
           <ShoppingCart className="h-6 w-6" />
+          {products.length > 0 && (
+            <div className="absolute -top-1 -right-2 flex items-center justify-center w-6 h-6 rounded-full bg-red-500 text-white text-xs font-bold z-10">
+              {products.length}
+            </div>
+          )}
         </Button>
       </SheetTrigger>
 
