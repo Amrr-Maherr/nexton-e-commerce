@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { FetchProductDetails } from "../../../Redux/ProductDetailsSlice";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import AddToCart from "../ProductActions/AddToCart";
+import ProductQuantity from "../ProductActions/ProductQuantity";
 
 export default function ProductDetails({ params }) {
    const unwrappedParams = React.use(params);
@@ -57,7 +59,7 @@ console.log(product, "data");
             )}
           </div>
 
-          <div className="col-span-7 md:col-span-3 rounded-[16px] border border-solid border-[#E5E7EB] p-[23px] flex flex-col gap-6">
+          <div className="col-span-7 md:col-span-3 rounded-[16px] border border-solid border-[#E5E7EB] p-[23px] h-fit flex flex-col gap-6">
             <h1 className="text-xl md:text-3xl font-bold mb-2">
               {product.title}
             </h1>
@@ -108,6 +110,10 @@ console.log(product, "data");
                 </ul>
               </div>
             )}
+            <div className="flex items-center justify-between w-full flex-row-reverse">
+              <AddToCart product={product} />
+              <ProductQuantity product={product.id} />
+            </div>
           </div>
         </div>
       )}
