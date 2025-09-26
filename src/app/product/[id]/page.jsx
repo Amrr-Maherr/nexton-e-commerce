@@ -26,6 +26,7 @@ export default function ProductDetails({ params }) {
       dispatch(FetchProductDetails(id));
     }
   }, [dispatch, id]);
+  
 console.log(product, "data");
 
   if (loading) return <Loader />;
@@ -112,7 +113,7 @@ console.log(product, "data");
             )}
             <div className="flex items-center justify-between w-full flex-row-reverse">
               <AddToCart product={product} />
-              <ProductQuantity product={product.id} />
+              <ProductQuantity product={product}  />
             </div>
           </div>
         </div>

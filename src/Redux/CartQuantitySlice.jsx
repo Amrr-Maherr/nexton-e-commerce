@@ -1,16 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const CART_ENDPOINT =
-    "https://ecommerce.routemisr.com/api/v1/cart";
-  
+const CART_ENDPOINT = "https://ecommerce.routemisr.com/api/v1/cart";
+
 export const updateQuantity = createAsyncThunk(
   "cart/updateQuantity",
   async ({ productId, count }) => {
     const token = localStorage.getItem("token");
     const response = await axios.put(
       `${CART_ENDPOINT}/${productId}`,
-      { count: count},
+      { count },
       { headers: { token } }
     );
     return response.data;
@@ -22,6 +21,7 @@ const CartQuantitySlice = createSlice({
   initialState: {
     loading: false,
     error: null,
+    cart: null,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -30,8 +30,9 @@ const CartQuantitySlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(updateQuantity.fulfilled, (state) => {
+      .addCase(updateQuantity.fulfilled, (state, action) => {
         state.loading = false;
+        state.cart = action.payload;
       })
       .addCase(updateQuantity.rejected, (state, action) => {
         state.loading = false;
