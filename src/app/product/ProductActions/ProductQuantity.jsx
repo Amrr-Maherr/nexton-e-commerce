@@ -33,15 +33,18 @@ export default function ProductQuantity({ product }) {
   return (
     <div className="inline-flex items-center gap-1 rounded-2xl border border-gray-200 bg-white p-1 shadow-sm">
       <button
-        disabled={loading}
+        disabled={loading ? true : false}
         onClick={HandelDelQuantity}
         type="button"
-        className="h-8 w-8 md:h-9 md:w-9 cursor-pointer rounded-xl border border-gray-200 text-base md:text-lg leading-none"
+        className={`h-8 w-8 ${
+          loading ? "border-none bg-gray-500" : "border border-gray-20"
+        } md:h-9 md:w-9 cursor-pointer rounded-xl 0 text-base md:text-lg leading-none`}
       >
         –
       </button>
 
       <input
+        disabled={loading ? true : false}
         type="number"
         min="0"
         onChange={(e) => setQuantityValue(Math.max(0, Number(e.target.value)))}
@@ -50,10 +53,12 @@ export default function ProductQuantity({ product }) {
       />
 
       <button
-        disabled={loading}
+        disabled={loading ? true : false}
         onClick={HandelAddQuantity}
         type="button"
-        className="h-8 w-8 md:h-9 md:w-9 cursor-pointer rounded-xl border border-gray-200 text-base md:text-lg leading-none"
+        className={`h-8 w-8 ${
+          loading ? "border-none bg-gray-500" : "border border-gray-20"
+        } md:h-9 md:w-9 cursor-pointer rounded-xl 0 text-base md:text-lg leading-none`}
       >
         +
       </button>

@@ -39,13 +39,13 @@ export default function CartPage() {
         {/* Clear Cart Button */}
         <div className="flex justify-end mb-4">
           <button
-            disabled={products ? true : false}
+            disabled={products.length === 0}
             type="button"
             onClick={handleClearCart}
             className={`px-4 py-2 text-white rounded hover:bg-red-600 ${
-              products
+              products.length === 0
                 ? "cursor-not-allowed bg-red-200 hover:!bg-red-200"
-                : " cursor-pointer bg-red-500 "
+                : "cursor-pointer bg-red-500"
             }`}
           >
             Clear Cart
