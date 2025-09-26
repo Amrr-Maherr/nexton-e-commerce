@@ -33,6 +33,7 @@ export default function ProductQuantity({ product }) {
   return (
     <div className="inline-flex items-center gap-1 rounded-2xl border border-gray-200 bg-white p-1 shadow-sm">
       <button
+        disabled={loading}
         onClick={HandelDelQuantity}
         type="button"
         className="h-8 w-8 md:h-9 md:w-9 cursor-pointer rounded-xl border border-gray-200 text-base md:text-lg leading-none"
@@ -49,6 +50,7 @@ export default function ProductQuantity({ product }) {
       />
 
       <button
+        disabled={loading}
         onClick={HandelAddQuantity}
         type="button"
         className="h-8 w-8 md:h-9 md:w-9 cursor-pointer rounded-xl border border-gray-200 text-base md:text-lg leading-none"

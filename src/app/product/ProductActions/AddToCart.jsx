@@ -11,13 +11,13 @@ export default function AddToCart({ product }) {
     try {
       if (product) {
         await dispatch(addProductToCart(product.id));
-        await toast.success(items.message);
+        toast.success(items.message);
       }
     } catch (error) {
         toast.success(items.message);
     }
   };
-  console.log(items);
+  console.log(items.message, "message");
     return (
       <>
         <Button onClick={()=>{handelAddToCart(product)}} disabled={loading} className="py-[14px] cursor-pointer px-[32px] rounded-full bg-[#111827] text-[16px] flex items-center justify-center gap-[8px]">
