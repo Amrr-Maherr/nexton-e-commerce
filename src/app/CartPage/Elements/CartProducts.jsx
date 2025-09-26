@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { updateQuantity } from "@/Redux/CartQuantitySlice";
 import { FetchCart } from "@/Redux/ShowCartSlice";
+import { RemoveFromCart } from "@/Redux/RemoveFromCart";
 
 export default function CartProducts({ products }) {
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ export default function CartProducts({ products }) {
     dispatch(updateQuantity({ productId, count: currentCount - 1 })).then(() =>
       dispatch(FetchCart())
     );
+  };
+
+  const handleRemove = (productId) => {
+    dispatch(RemoveFromCart(productId)).then(() => dispatch(FetchCart()));
   };
 
   return (
@@ -67,10 +72,10 @@ export default function CartProducts({ products }) {
                   >
                     +
                   </button>
-                  {/* زر لمسح المنتج كـ UI فقط */}
                   <button
                     type="button"
                     className="ml-4 px-2 py-1 border rounded bg-red-100 hover:bg-red-200 text-red-600 cursor-pointer"
+                    onClick={() => handleRemove(product.product.id)}
                   >
                     Remove
                   </button>
