@@ -11,6 +11,7 @@ import GetCartSlice from "../Redux/ShowCartSlice";
 import FavoritesSlice from "../Redux/FetchFavorites";
 import CartQuantitySlice from "../Redux/CartQuantitySlice";
 import filtersSlice from "../Redux/FilterSlice";
+import cartSlice from "../Redux/ClearCartSlice";
 
 export const store = configureStore({
   reducer: {
@@ -26,5 +27,6 @@ export const store = configureStore({
     getFav: FavoritesSlice,
     cartQuantity: CartQuantitySlice,
     filters: filtersSlice,
+    ClearCart: cartSlice,
   },
 });

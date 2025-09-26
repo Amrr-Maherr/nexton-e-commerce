@@ -6,6 +6,7 @@ import CartSidebar from "./Elements/CartSidebar";
 import { useEffect } from "react";
 import { FetchCart } from "@/Redux/ShowCartSlice";
 import Loader from "@/components/Loader/Loader";
+import { ClearCart } from "@/Redux/ClearCartSlice";
 
 export default function CartPage() {
   const cartState = useSelector((state) => state.getCart);
@@ -23,6 +24,12 @@ export default function CartPage() {
     return <Loader />;
   }
 
+  const handleClearCart = () => {
+    dispatch(ClearCart()).then(() => {
+      dispatch(FetchCart())
+    });
+  };
+
   return (
     <section className="container mx-auto py-10 grid grid-cols-1 md:grid-cols-3 gap-6">
       {/* Cart Sidebar */}
@@ -33,6 +40,7 @@ export default function CartPage() {
         <div className="flex justify-end mb-4">
           <button
             type="button"
+            onClick={handleClearCart}
             className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 cursor-pointer"
           >
             Clear Cart
