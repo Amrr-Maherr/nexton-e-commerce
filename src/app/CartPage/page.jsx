@@ -3,13 +3,14 @@
 import { useDispatch, useSelector } from "react-redux";
 import CartProducts from "./Elements/CartProducts";
 import CartSidebar from "./Elements/CartSidebar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { FetchCart } from "@/Redux/ShowCartSlice";
 import Loader from "@/components/Loader/Loader";
 import { ClearCart } from "@/Redux/ClearCartSlice";
 
 export default function CartPage() {
   const cartState = useSelector((state) => state.getCart);
+  const [dis,setDis] = useState(false)
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +24,6 @@ export default function CartPage() {
   if (loading) {
     return <Loader />;
   }
-
   const handleClearCart = () => {
     dispatch(ClearCart()).then(() => {
       dispatch(FetchCart())
@@ -39,9 +39,14 @@ export default function CartPage() {
         {/* Clear Cart Button */}
         <div className="flex justify-end mb-4">
           <button
+            disabled={products ? true : false}
             type="button"
             onClick={handleClearCart}
-            className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 cursor-pointer"
+            className={`px-4 py-2 text-white rounded hover:bg-red-600 ${
+              products
+                ? "cursor-not-allowed bg-red-200 hover:!bg-red-200"
+                : " cursor-pointer bg-red-500 "
+            }`}
           >
             Clear Cart
           </button>
