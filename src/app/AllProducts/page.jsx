@@ -6,8 +6,12 @@ import FiltersUI from "./Elements/FiltersUI";
 import { FetchFilteredProducts } from "@/Redux/FilterSlice";
 import ProductCard from "../Home/Elements/ProductsSection/ProductCard";
 export default function AllProducts() {
+  const dispatch = useDispatch()
   const products = useSelector((state) => state.filters.data);
   const loading = useSelector((state) => state.filters.loading);
+  useEffect(() => {
+    dispatch(FetchFilteredProducts())
+  },[dispatch])
   return (
     <>
       <section>

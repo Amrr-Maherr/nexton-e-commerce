@@ -17,23 +17,6 @@ export default function FiltersPanel() {
   const categories = useSelector((state) => state.category.data);
   console.log(categories, "categories");
   
-  useEffect(() => {
-    dispatch(
-      FetchFilteredProducts({
-        sort: "-price",
-        fields: "title,price",
-        "price[gte]": 100,
-        keyword: "new",
-        brand: "6212b6b488f2cee15c5db3c8",
-        "price[lte]": 13,
-        "category[in]": [
-          "6212b67488f2cee15c5db3ba",
-          "61f3157c6bdf4c518f9bbcb9",
-        ],
-      })
-    );
-  }, [dispatch]);
-
   const [filters, setFilters] = useState({
     sort: "-price",
     "price[gte]": "",
@@ -59,10 +42,8 @@ export default function FiltersPanel() {
   };
 
   const handleApply = () => {
-    const payload = {
-      filters
-    };
-    dispatch(FetchFilteredProducts(payload));
+    console.log(filters, "filters payload");
+    dispatch(FetchFilteredProducts(filters));
   };
   return (
     <div className="grid gap-4">

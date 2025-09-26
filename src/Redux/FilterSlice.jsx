@@ -9,8 +9,8 @@ export const FetchFilteredProducts = createAsyncThunk(
       const token = localStorage.getItem("token");
       const response = await axios.get(
         "https://ecommerce.routemisr.com/api/v1/products",
-        filters,
         {
+          params: filters,
           headers: {
             Authorization: `Bearer ${token}`,
           },
