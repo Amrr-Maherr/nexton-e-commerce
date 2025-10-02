@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   Select,
@@ -13,17 +13,18 @@ import { FetchFilteredProducts } from "@/Redux/FilterSlice";
 
 export default function FiltersPanel() {
   const dispatch = useDispatch();
-  const brands = useSelector((state) => state.brands.data);
-  const categories = useSelector((state) => state.category.data);
-  console.log(categories, "categories");
-  
+
+  // safe defaults علشان تتجنب مشكلة map على undefined
+  const brands = useSelector((state) => state.brands.data) || [];
+  const categories = useSelector((state) => state.category.data) || [];
+
   const [filters, setFilters] = useState({
     sort: "-price",
-    "price[gte]": "",
-    "price[lte]": "",
+    priceGte: "",
+    priceLte: "",
     keyword: "",
     brand: "",
-    "category[in]": "",
+    categoryIn: "",
   });
 
   const handleChange = (key, value) => {
@@ -33,25 +34,32 @@ export default function FiltersPanel() {
   const handleReset = () => {
     setFilters({
       sort: "-price",
-      "price[gte]": "",
-      "price[lte]": "",
+      priceGte: "",
+      priceLte: "",
       keyword: "",
       brand: "",
-      "category[in]": "",
+      categoryIn: "",
     });
   };
 
   const handleApply = () => {
-    console.log(filters, "filters payload");
-    dispatch(FetchFilteredProducts(filters));
+    const payload = {
+      ...filters,
+      "price[gte]": filters.priceGte ? Number(filters.priceGte) : undefined,
+      "price[lte]": filters.priceLte ? Number(filters.priceLte) : undefined,
+      "category[in]": filters.categoryIn,
+    };
+    console.log(payload, "filters payload");
+    dispatch(FetchFilteredProducts(payload));
   };
+
   return (
     <div className="grid gap-4">
       {/* Search / Keyword */}
       <label className="font-medium">Search in products...</label>
       <Input
         type="text"
-        placeholder="Key word"
+        placeholder="Keyword"
         value={filters.keyword}
         onChange={(e) => handleChange("keyword", e.target.value)}
       />
@@ -59,8 +67,8 @@ export default function FiltersPanel() {
       {/* Categories */}
       <label className="font-medium">Categories</label>
       <Select
-        value={filters["category[in]"]}
-        onValueChange={(val) => handleChange("category[in]", val)}
+        value={filters.categoryIn}
+        onValueChange={(val) => handleChange("categoryIn", val)}
       >
         <SelectTrigger className="w-full">
           <SelectValue placeholder="Categories" />
@@ -92,7 +100,7 @@ export default function FiltersPanel() {
         </SelectContent>
       </Select>
 
-      {/* Min Price */}
+      {/* Price Range */}
       <div className="grid grid-cols-2 gap-4">
         {/* Min Price */}
         <div className="flex flex-col">
@@ -100,8 +108,8 @@ export default function FiltersPanel() {
           <Input
             type="number"
             placeholder="1"
-            value={filters["price[gte]"]}
-            onChange={(e) => handleChange("price[gte]", e.target.value)}
+            value={filters.priceGte}
+            onChange={(e) => handleChange("priceGte", e.target.value)}
           />
         </div>
 
@@ -111,8 +119,8 @@ export default function FiltersPanel() {
           <Input
             type="number"
             placeholder="1000"
-            value={filters["price[lte]"]}
-            onChange={(e) => handleChange("price[lte]", e.target.value)}
+            value={filters.priceLte}
+            onChange={(e) => handleChange("priceLte", e.target.value)}
           />
         </div>
       </div>
