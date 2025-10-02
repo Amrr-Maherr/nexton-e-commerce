@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { addProductToCart } from "@/Redux/CartSlice";
+import { FetchCart } from "@/Redux/ShowCartSlice";
 import { Star, ShoppingBag } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "sonner";
@@ -11,6 +12,7 @@ export default function AddToCart({ product }) {
     try {
       if (product) {
         await dispatch(addProductToCart(product.id));
+        await dispatch(FetchCart());
         toast.success(items.message);
       }
     } catch (error) {
