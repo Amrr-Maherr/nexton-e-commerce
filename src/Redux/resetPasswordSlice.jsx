@@ -40,7 +40,7 @@ const resetPasswordSlice = createSlice({
         state.loading = false;
         state.message =
           action.payload.message || "Password has been reset successfully";
-        state.token = action.payload.token || null; // بعض APIs بيرجعوا توكن بعد الريسيت
+        state.token = action.payload.token || null;
       })
       .addCase(resetPassword.rejected, (state, action) => {
         state.loading = false;
