@@ -1,5 +1,5 @@
 "use client";
-import { Star, ShoppingBag, Heart } from "lucide-react";
+import { Star, ShoppingBag, Heart, Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { MoonLoader } from "react-spinners";
@@ -10,8 +10,10 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { FetchCart } from "@/Redux/ShowCartSlice";
 import { FetchFavorites } from "@/Redux/FetchFavorites";
+import { RemoveFromWishlist } from "@/Redux/RemoveWishlistSlice";
 
 export default function ProductCard({ product }) {
+  const pathName = window.location.pathname;
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [wishlistLoading, setWishlistLoading] = useState(false);
@@ -49,8 +51,13 @@ export default function ProductCard({ product }) {
       toast.error(error.message || "Something went wrong");
     } finally {
       setWishlistLoading(false);
-      dispatch(FetchFavorites())
+      dispatch(FetchFavorites());
     }
+  };
+
+  const HandelRemoveFromWishlist = async (id) => {
+    await dispatch(RemoveFromWishlist(id));
+    dispatch(FetchFavorites());
   };
 
   return (
@@ -65,7 +72,6 @@ export default function ProductCard({ product }) {
           />
         </Link>
 
-        {/* Add to Cart Button */}
         <div
           onClick={handleAddToCart}
           className="absolute cursor-pointer right-[15px] top-[15px] w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center"
@@ -77,20 +83,31 @@ export default function ProductCard({ product }) {
           )}
         </div>
 
-        {/* Add to Wishlist Button */}
-        <div
-          onClick={handleAddToWishlist}
-          className="absolute cursor-pointer left-[15px] top-[15px] w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center"
-        >
-          {wishlistLoading ? (
-            <MoonLoader color="#EF4444" size={20} />
-          ) : (
-            <Heart className="w-5 h-5 text-red-500" />
-          )}
-        </div>
+        {pathName === "/FavoritesPage" ? (
+          <div
+            onClick={() => HandelRemoveFromWishlist(product.id)}
+            className="absolute cursor-pointer left-[15px] top-[15px] w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center"
+          >
+            {wishlistLoading ? (
+              <MoonLoader color="#EF4444" size={20} />
+            ) : (
+              <Trash2 className="w-5 h-5 text-red-500" />
+            )}
+          </div>
+        ) : (
+          <div
+            onClick={handleAddToWishlist}
+            className="absolute cursor-pointer left-[15px] top-[15px] w-[36px] h-[36px] rounded-full bg-white flex items-center justify-center"
+          >
+            {wishlistLoading ? (
+              <MoonLoader color="#EF4444" size={20} />
+            ) : (
+              <Heart className="w-5 h-5 text-red-500" />
+            )}
+          </div>
+        )}
       </div>
 
-      {/* Product Info */}
       <div className="flex items-center justify-between px-[16px] mt-[20px]">
         <div className="text-start font-semibold truncate-1-line text-[#111827] text-[16px]">
           {product.title.length > 10

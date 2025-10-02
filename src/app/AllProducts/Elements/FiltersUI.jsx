@@ -14,7 +14,6 @@ import { FetchFilteredProducts } from "@/Redux/FilterSlice";
 export default function FiltersPanel() {
   const dispatch = useDispatch();
 
-  // safe defaults علشان تتجنب مشكلة map على undefined
   const brands = useSelector((state) => state.brands.data) || [];
   const categories = useSelector((state) => state.category.data) || [];
 
