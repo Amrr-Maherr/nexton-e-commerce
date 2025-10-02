@@ -7,7 +7,7 @@ export default function ProductQuantity({ product }) {
   const [QuantityValue, setQuantityValue] = useState(1);
   const dispatch = useDispatch();
   const { cart, loading, error } = useSelector((state) => state.cartQuantity);
-
+  const isLogIn = localStorage.getItem("token");
   const HandelAddQuantity = () => {
     const newValue = QuantityValue + 1;
     setQuantityValue(newValue);
@@ -33,7 +33,7 @@ export default function ProductQuantity({ product }) {
   return (
     <div className="inline-flex items-center gap-1 rounded-2xl border border-gray-200 bg-white p-1 shadow-sm">
       <button
-        disabled={loading ? true : false}
+        disabled={loading || !isLogIn}
         onClick={HandelDelQuantity}
         type="button"
         className={`h-8 w-8 ${
@@ -44,7 +44,7 @@ export default function ProductQuantity({ product }) {
       </button>
 
       <input
-        disabled={loading ? true : false}
+        disabled={loading || !isLogIn}
         type="number"
         min="0"
         onChange={(e) => setQuantityValue(Math.max(0, Number(e.target.value)))}
@@ -53,7 +53,7 @@ export default function ProductQuantity({ product }) {
       />
 
       <button
-        disabled={loading ? true : false}
+        disabled={loading || !isLogIn}
         onClick={HandelAddQuantity}
         type="button"
         className={`h-8 w-8 ${
