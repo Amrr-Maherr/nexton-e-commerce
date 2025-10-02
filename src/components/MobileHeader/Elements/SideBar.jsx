@@ -14,13 +14,11 @@ import {
   Home,
   ShoppingCart,
   ShoppingBag,
-  Package,
   Heart,
-  User,
-  Phone,
   LogIn,
   LogOut,
   Info,
+  Package,
 } from "lucide-react";
 import Logo from "@/components/Header/Elements/Logo";
 import Link from "next/link";
@@ -30,7 +28,8 @@ export default function SideBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleAuth = () => {
-    setIsLoggedIn(!isLoggedIn);
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
   };
 
   useEffect(() => {
@@ -92,15 +91,6 @@ export default function SideBar() {
               </Link>
             </SheetClose>
 
-            {/* <SheetClose asChild>
-              <Link
-                href="#"
-                className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
-              >
-                <Package className="h-5 w-5" /> Orders
-              </Link>
-            </SheetClose> */}
-
             <SheetClose asChild>
               <Link
                 href="/FavoritesPage"
@@ -109,15 +99,14 @@ export default function SideBar() {
                 <Heart className="h-5 w-5" /> Wishlist
               </Link>
             </SheetClose>
-
-            {/* <SheetClose asChild>
+            <SheetClose asChild>
               <Link
-                href="/fgfgfg"
+                href="/OrdersPage"
                 className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
               >
-                <User className="h-5 w-5" /> Account
+                <Package className="h-5 w-5" /> Orders
               </Link>
-            </SheetClose> */}
+            </SheetClose>
 
             <SheetClose asChild>
               <Link
@@ -127,15 +116,6 @@ export default function SideBar() {
                 <Info className="h-5 w-5" /> About
               </Link>
             </SheetClose>
-
-            {/* <SheetClose asChild>
-              <Link
-                href="#"
-                className="flex items-center gap-3 px-6 py-3 text-base font-medium hover:bg-gray-100 rounded-md transition"
-              >
-                <Phone className="h-5 w-5" /> Contact
-              </Link>
-            </SheetClose> */}
           </nav>
 
           <div className="p-6 border-t flex flex-col gap-3">
