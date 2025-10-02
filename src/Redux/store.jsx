@@ -13,6 +13,9 @@ import CartQuantitySlice from "../Redux/CartQuantitySlice";
 import filtersSlice from "../Redux/FilterSlice";
 import cartRemoveSlice from "../Redux/RemoveFromCart";
 import RemoveWishlistSlice from "../Redux/RemoveWishlistSlice";
+import forgotPasswordSlice from "../Redux/forgotPasswordSlice";
+import verifyResetCodeSlice from "../Redux/verifyResetCodeSlice";
+import resetPasswordSlice from "../Redux/resetPasswordSlice";
 
 export const store = configureStore({
   reducer: {
@@ -30,5 +33,8 @@ export const store = configureStore({
     filters: filtersSlice,
     cartRemove: cartRemoveSlice,
     RemoveWishlist: RemoveWishlistSlice,
+    forgotPassword: forgotPasswordSlice,
+    verifyResetCode: verifyResetCodeSlice,
+    resetPassword: resetPasswordSlice,
   },
 });
