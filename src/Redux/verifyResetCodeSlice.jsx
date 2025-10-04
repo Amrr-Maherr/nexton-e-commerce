@@ -21,7 +21,7 @@ export const verifyResetCode = createAsyncThunk(
 const verifyResetCodeSlice = createSlice({
   name: "verifyResetCode",
   initialState: {
-    loading: false,
+    loading: true,
     error: null,
     message: null,
     status: null,

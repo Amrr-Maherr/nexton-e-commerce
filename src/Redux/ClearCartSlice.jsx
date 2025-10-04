@@ -4,27 +4,24 @@ import axios from "axios";
 const CART_ENDPOINT = "https://ecommerce.routemisr.com/api/v1/cart";
 
 // Async thunk to clear the cart
-export const ClearCart = createAsyncThunk(
-  "cart/clearCart",
-  async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.delete(CART_ENDPOINT, {
-        headers: { token },
-      });
-      return response.data;
-    } catch (error) {
-      return error.response?.data || error.message;
-    }
+export const ClearCart = createAsyncThunk("cart/clearCart", async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const response = await axios.delete(CART_ENDPOINT, {
+      headers: { token },
+    });
+    return response.data;
+  } catch (error) {
+    return error.response?.data || error.message;
   }
-);
+});
 
 // Cart slice
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
     items: [],
-    loading: false,
+    loading: true,
     error: null,
     message: null,
   },

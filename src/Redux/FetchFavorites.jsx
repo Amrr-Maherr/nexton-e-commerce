@@ -23,7 +23,7 @@ const FavoritesSlice = createSlice({
   name: "favorites",
   initialState: {
     data: [],
-    loading: false,
+    loading: true,
     error: null,
   },
   reducers: {},

@@ -25,7 +25,7 @@ const WishlistSlice = createSlice({
   name: "wishlist",
   initialState: {
     items: [],
-    loading: false,
+    loading: true,
     error: null,
   },
   reducers: {},

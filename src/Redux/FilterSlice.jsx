@@ -28,7 +28,7 @@ const filtersSlice = createSlice({
   name: "filters",
   initialState: {
     data: [],
-    loading: false,
+    loading: true,
     error: null,
   },
   reducers: {},

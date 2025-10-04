@@ -19,7 +19,7 @@ const GetCartSlice = createSlice({
   name: "GetCart",
   initialState: {
     data: [],
-    loading: false,
+    loading: true,
     error: null,
   },
   reducers: {},
@@ -41,4 +41,4 @@ const GetCartSlice = createSlice({
     });
   },
 });
-export default GetCartSlice.reducer
+export default GetCartSlice.reducer;

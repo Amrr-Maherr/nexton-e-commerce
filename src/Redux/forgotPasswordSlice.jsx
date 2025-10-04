@@ -19,7 +19,7 @@ export const forgotPassword = createAsyncThunk(
 const forgotPasswordSlice = createSlice({
   name: "forgotPassword",
   initialState: {
-    loading: false,
+    loading: true,
     error: null,
     message: null,
   },

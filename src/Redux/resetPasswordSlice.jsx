@@ -22,7 +22,7 @@ export const resetPassword = createAsyncThunk(
 const resetPasswordSlice = createSlice({
   name: "resetPassword",
   initialState: {
-    loading: false,
+    loading: true,
     error: null,
     message: null,
     token: null,

@@ -12,9 +12,7 @@ export const fetchProducts = createAsyncThunk(
       );
       return response.data.data;
     } catch (error) {
-      return (
-        error
-      )
+      return error;
     }
   }
 );
@@ -24,7 +22,7 @@ const ProductsSlice = createSlice({
   name: "All_Products", // slice name
   initialState: {
     products: [], // list of products
-    loading: false, // loading state while fetching
+    loading: true, // loading state while fetching
     error: null, // error message if request fails
   },
   reducers: {}, // no manual reducers (only using async thunk here)

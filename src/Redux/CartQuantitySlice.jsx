@@ -19,7 +19,7 @@ export const updateQuantity = createAsyncThunk(
 const CartQuantitySlice = createSlice({
   name: "cartQuantity",
   initialState: {
-    loading: false,
+    loading: true,
     error: null,
     cart: null,
   },

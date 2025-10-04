@@ -19,7 +19,7 @@ const ProductDetailsSlice = createSlice({
   name: "ProductDetails",
   initialState: {
     data: {},
-    loading: false,
+    loading: true,
     error: null,
   },
   reducers: {},

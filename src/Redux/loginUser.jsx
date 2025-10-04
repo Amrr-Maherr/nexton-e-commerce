@@ -20,7 +20,7 @@ export const loginUser = createAsyncThunk(
 
 const LoginSlice = createSlice({
   name: "login",
-  initialState: { user: null, loading: false, error: null },
+  initialState: { user: null, loading: true, error: null },
   reducers: {},
   extraReducers: (builder) => {
     builder

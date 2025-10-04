@@ -19,7 +19,7 @@ const CategorySlice = createSlice({
   name: "categories",
   initialState: {
     data: [],
-    loading: false,
+    loading: true,
     error: null,
   },
   reducers: {},

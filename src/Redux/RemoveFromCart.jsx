@@ -22,7 +22,7 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     items: [],
-    loading: false,
+    loading: true,
     error: null,
     message: null,
   },

@@ -22,7 +22,7 @@ const removeWishlistSlice = createSlice({
   name: "removeWishlist",
   initialState: {
     items: [],
-    loading: false,
+    loading: true,
     error: null,
     message: null,
   },
